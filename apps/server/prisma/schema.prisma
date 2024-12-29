@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String?  @unique
+  phone        String   @unique
+  name         String?
+  username     String   @unique
+  fathersName  String?
+  password     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  addresses     Address[]
+  subscriptions Subscription[]
+  payments      Payment[]
+
+  @@index([phone, username, email])
+}
+
+model Address {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  street    String
+  city      String
+  state     String?
+  zip       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model InternetPackage {
+  id          String   @id @default(uuid())
+  name        String
+  price       Float
+  speed       Int      // in Mbps
+  description String?
+  duration    Int      // in days
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  subscriptions Subscription[]
+}
+
+model Subscription {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  packageId String
+  package   InternetPackage @relation(fields: [packageId], references: [id])
+  startDate DateTime @default(now())
+  endDate   DateTime
+  status    SubscriptionStatus @default(PENDING)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  payments Payment[]
+
+  @@index([userId])
+  @@index([packageId])
+}
+
+model Payment {
+  id                   String        @id @default(uuid())
+  paymentId            String        @unique  // bKash payment ID
+  trxId                String?       @unique  // bKash transaction ID
+  userId               String
+  user                 User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscriptionId       String
+  subscription         Subscription  @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+  amount              Float
+  currency            String        @default("BDT")
+  payerReference      String?
+  merchantInvoiceNumber String
+  paymentMethod       PaymentMethod @default(BKASH)
+  status              PaymentStatus @default(CREATED)
+  meta                Json?         @db.JsonB // Store additional payment details
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  @@map("payments")
+  @@index([userId])
+  @@index([subscriptionId])
+}
+
+enum SubscriptionStatus {
+  PENDING
+  ACTIVE
+  EXPIRED
+  CANCELLED
+  SUSPENDED
+  FAILED
+}
+
+enum PaymentStatus {
+  CREATED
+  PENDING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  BKASH
+  CASH
+  BANK_TRANSFER
+}
