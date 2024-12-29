@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { type Request, type Response, type NextFunction } from 'express';
 import bkashConfig from '../config/bkashConfig.json';
 import fetch from 'node-fetch';
 import { setGlobalIdToken } from './globalData';

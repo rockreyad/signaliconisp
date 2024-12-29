@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { type Request, type Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { prisma } from '../lib/prisma';
 import { response } from '../utils/response';

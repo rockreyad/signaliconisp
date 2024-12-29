@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "dev": "nodemon -r dotenv/config",
+    "dev": "nodemon",
     "build": "tsc",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
@@ -12,9 +12,9 @@
     "db:studio": "prisma studio",
     "create:packages": "ts-node src/scripts/createPackages.ts",
     "postinstall": "prisma generate",
-    "lint": "eslint --config eslint.config.js . || true",
-    "lint:strict": "eslint --config eslint.config.js . --max-warnings 0",
-    "lint:fix": "eslint --config eslint.config.js . --fix || true",
+    "lint": "eslint --config eslint.config.cjs . || true",
+    "lint:strict": "eslint --config eslint.config.cjs . --max-warnings 0",
+    "lint:fix": "eslint --config eslint.config.cjs . --fix || true",
     "format": "prettier --write \"src/**/*.ts\"",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
@@ -55,10 +55,10 @@
     "prisma": "^5.8.1",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
-    "typescript": "5.5.0-beta"
+    "typescript": "5.3.3"
   },
   "engines": {
     "node": ">=20.0.0"
   },
-  "type": "module"
+  "type": "commonjs"
 }

@@ -2,7 +2,6 @@
   "name": "signaliconbd-isp-portal",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "author": "Mahamud Hasan <rockreyad@gmail.com>",
   "scripts": {
     "dev": "next dev",
