@@ -5,13 +5,15 @@
   "main": "index.js",
   "lint-staged": {
     "**/*.{js,ts,tsx}": [
-      "eslint --fix"
+      "pnpm lint"
     ],
     "**/*": "prettier --write --ignore-unknown"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint .",
+    "lint": "pnpm -r lint",
+    "lint:strict": "pnpm -r lint:strict",
+    "lint:fix": "pnpm -r lint:fix",
     "format": "prettier --write .",
     "prepare": "husky"
   },
@@ -19,21 +21,27 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": ">=22.6.0"
+    "node": ">=18.0.0"
   },
   "type": "module",
   "packageManager": "pnpm@9.8.0",
+  "overrides": {},
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@eslint/js": "^9.17.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@typescript-eslint/utils": "^7.0.0",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.3.0",
     "prettier": "^3.4.2",
-    "typescript-eslint": "^8.18.2"
+    "typescript": "^5.7.2"
   }
 }

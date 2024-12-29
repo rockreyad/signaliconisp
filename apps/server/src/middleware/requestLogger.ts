@@ -37,7 +37,6 @@ const sanitizeData = (data: any) => {
 
     mask(sanitized);
     return sanitized;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     logger.error('Error sanitizing data');
     return undefined;

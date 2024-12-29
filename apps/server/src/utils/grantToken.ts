@@ -38,7 +38,7 @@ export const grantToken = async (
     setGlobalIdToken(tokenResult.id_token);
     logger.success('Token granted successfully');
     next();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     logger.error('Token grant failed');
     return response(

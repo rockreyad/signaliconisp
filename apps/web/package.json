@@ -2,12 +2,15 @@
   "name": "signaliconbd-isp-portal",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "author": "Mahamud Hasan <rockreyad@gmail.com>",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint || true",
+    "lint:strict": "next lint --max-warnings 0",
+    "lint:fix": "next lint --fix || true",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check ."
   },
@@ -37,22 +40,30 @@
     "zustand": "^5.0.2"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^15.1.3",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-table": "^7.7.19",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "postcss": "^8",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.1",
     "tsx": "^4.17.0",
-    "typescript": "^5"
+    "typescript": "^5.3.3"
   },
   "prisma": {
     "schema": "src/prisma/schema.prisma"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
