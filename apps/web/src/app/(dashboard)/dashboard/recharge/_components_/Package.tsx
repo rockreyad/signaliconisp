@@ -1,9 +1,18 @@
 "use client";
 
 import { createSubscription } from "@/server/subscriptions";
+import clsx from "clsx";
 import React from "react";
 
-export const Package = ({ pkg, userId }: { pkg: any; userId: string }) => {
+export const Package = ({
+  pkg,
+  userId,
+  isSubscribed,
+}: {
+  pkg: any;
+  userId: string;
+  isSubscribed: boolean;
+}) => {
   return (
     <div
       key={pkg.id}
@@ -43,8 +52,14 @@ export const Package = ({ pkg, userId }: { pkg: any; userId: string }) => {
         <p className="text-gray-600">Duration: {pkg.duration} days</p>
 
         <button
-          className="w-full rounded-md bg-blue-600 py-3 text-white transition-colors duration-300 hover:bg-blue-700"
+          className={clsx(
+            "w-full rounded-md py-3 text-white transition-colors duration-300",
+            isSubscribed ? "bg-gray-600" : "bg-blue-600 hover:bg-blue-700",
+          )}
           onClick={async () => {
+            if (isSubscribed) {
+              return;
+            }
             try {
               const result = await createSubscription({
                 userId: userId,
@@ -59,7 +74,7 @@ export const Package = ({ pkg, userId }: { pkg: any; userId: string }) => {
             }
           }}
         >
-          Choose Plan
+          {isSubscribed ? "Subscribed" : "Choose Plan"}
         </button>
       </div>
     </div>
