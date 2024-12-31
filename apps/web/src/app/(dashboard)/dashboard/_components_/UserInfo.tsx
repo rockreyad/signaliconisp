@@ -5,32 +5,15 @@ import Image from "next/image";
 import ButtonDefault from "@/components/Buttons/ButtonDefault";
 import { auth } from "@/auth";
 import dayjs from "dayjs";
-import { useSession } from "next-auth/react";
 import { getUserActiveSubscription } from "@/server/subscriptions";
 import clsx from "clsx";
 
-export async function getActiveSubscription() {
-  const session = await auth();
-  try {
-    const activeSubscription = await getUserActiveSubscription(
-      session?.user?.id || "",
-    );
-    return activeSubscription;
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error("Error fetching active subscription:", error.message);
-    } else {
-      console.error("Error fetching active subscription:", error);
-    }
-    return null;
-  }
-}
-
 export const UserInfo = async () => {
   const session = await auth();
-  const activeSubscription = await getActiveSubscription();
+  const activeSubscription = await getUserActiveSubscription(
+    session?.user?.id || "",
+  );
 
-  console.log("activeSubscription", activeSubscription);
   return (
     <div className="relative flex flex-col gap-4 rounded-[10px] bg-white p-6 shadow-1 dark:bg-gray-dark">
       {/* Recharge button */}
@@ -90,7 +73,7 @@ export const UserInfo = async () => {
             </p>
           </div>
           <div>
-            <p className="text-gray-500">Due Date</p>
+            <p className="text-gray-500">Next Payment Date</p>
             <p className="font-medium">
               {activeSubscription?.endDate
                 ? dayjs(activeSubscription?.endDate).format("DD MMMM YYYY")

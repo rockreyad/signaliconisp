@@ -8,10 +8,12 @@ export const Package = ({
   pkg,
   userId,
   isSubscribed,
+  hasActiveSubscription,
 }: {
   pkg: any;
   userId: string;
   isSubscribed: boolean;
+  hasActiveSubscription: boolean;
 }) => {
   return (
     <div
@@ -54,10 +56,16 @@ export const Package = ({
         <button
           className={clsx(
             "w-full rounded-md py-3 text-white transition-colors duration-300",
-            isSubscribed ? "bg-gray-600" : "bg-blue-600 hover:bg-blue-700",
+            {
+              "cursor-default": isSubscribed || hasActiveSubscription,
+              "bg-blue-600 hover:bg-blue-700":
+                !isSubscribed && !hasActiveSubscription,
+              "bg-gray-600": hasActiveSubscription,
+              "bg-green-600 font-bold": isSubscribed,
+            },
           )}
           onClick={async () => {
-            if (isSubscribed) {
+            if (isSubscribed || hasActiveSubscription) {
               return;
             }
             try {

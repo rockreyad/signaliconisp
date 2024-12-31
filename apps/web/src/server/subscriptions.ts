@@ -35,13 +35,17 @@ export async function createSubscription({
 }
 
 export async function getUserActiveSubscription(userId: string) {
-  const response = await api.get(`/api/subscriptions/active/${userId}`);
-
-  if (response.status !== 200) {
-    throw new Error("Failed to fetch active subscription");
+  try {
+    const response = await api.get(`/api/subscriptions/active/${userId}`);
+    return response.data.data;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Error fetching active subscription:", error.message);
+    } else {
+      console.error("Error fetching active subscription:", error);
+    }
+    return null;
   }
-
-  return response.data.data;
 }
 
 // export async function getUserSubscriptionHistory(userId: string) {
