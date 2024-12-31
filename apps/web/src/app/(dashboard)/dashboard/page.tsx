@@ -1,9 +1,10 @@
 import ECommerce from "@/components/Dashboard/E-commerce";
 import { Metadata } from "next";
-import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import React from "react";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import { DataStatsOne } from "./_components_/DataStatsOne";
+import { UserInfo } from "./_components_/UserInfo";
 
 export const metadata: Metadata = {
   title:
@@ -20,10 +21,9 @@ export default async function DashboardPage() {
 
   console.log("session", session);
   return (
-    <>
-      <DefaultLayout>
-        <ECommerce />
-      </DefaultLayout>
-    </>
+    <div>
+      <UserInfo />
+      {/* <DataStatsOne /> */}
+    </div>
   );
 }

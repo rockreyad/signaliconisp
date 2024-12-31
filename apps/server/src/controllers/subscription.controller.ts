@@ -16,6 +16,11 @@ const createSubscriptionSchema = z.object({
   packageId: z.string().uuid('Invalid package ID'),
 });
 
+// Schema for user params validation
+const userParamsSchema = z.object({
+  userId: z.string().uuid('Invalid user ID'),
+});
+
 // Initiate subscription and payment
 export const initiateSubscription = async (req: Request, res: Response) => {
   try {
@@ -197,5 +202,125 @@ export const updateSubscriptionStatus = async (
   } catch (error) {
     console.error('Error updating subscription status:', error);
     return false;
+  }
+};
+
+// Get user's active subscription
+export const getUserActiveSubscription = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    const { userId } = userParamsSchema.parse(req.params);
+
+    const subscription = await prisma.subscription.findFirst({
+      where: {
+        userId,
+        status: SubscriptionStatus.ACTIVE,
+        endDate: {
+          gt: new Date(),
+        },
+      },
+      include: {
+        package: true,
+        payments: {
+          orderBy: {
+            createdAt: 'desc',
+          },
+          take: 1,
+        },
+      },
+    });
+
+    if (!subscription) {
+      return response(
+        res,
+        StatusCodes.NOT_FOUND,
+        false,
+        null,
+        'No active subscription found',
+      );
+    }
+
+    return response(
+      res,
+      StatusCodes.OK,
+      true,
+      subscription,
+      'Active subscription fetched successfully',
+    );
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return response(
+        res,
+        StatusCodes.BAD_REQUEST,
+        false,
+        error.errors,
+        'Invalid user ID',
+      );
+    }
+
+    console.error('Error fetching active subscription:', error);
+    return response(
+      res,
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      false,
+      null,
+      'Error fetching active subscription',
+    );
+  }
+};
+
+// Get user's subscription history
+export const getUserSubscriptionHistory = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    const { userId } = userParamsSchema.parse(req.params);
+
+    const subscriptions = await prisma.subscription.findMany({
+      where: {
+        userId,
+      },
+      include: {
+        package: true,
+        payments: {
+          orderBy: {
+            createdAt: 'desc',
+          },
+        },
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    return response(
+      res,
+      StatusCodes.OK,
+      true,
+      subscriptions,
+      'Subscription history fetched successfully',
+    );
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return response(
+        res,
+        StatusCodes.BAD_REQUEST,
+        false,
+        error.errors,
+        'Invalid user ID',
+      );
+    }
+
+    console.error('Error fetching subscription history:', error);
+    return response(
+      res,
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      false,
+      null,
+      'Error fetching subscription history',
+    );
   }
 };

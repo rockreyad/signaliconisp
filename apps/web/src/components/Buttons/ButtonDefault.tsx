@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import clsx from "clsx";
 
 interface ButtonPropTypes {
   label: string;
@@ -17,7 +18,10 @@ const ButtonDefault = ({
   return (
     <>
       <Link
-        className={`inline-flex items-center justify-center gap-2.5 text-center font-medium hover:bg-opacity-90 ${customClasses}`}
+        className={clsx(
+          "inline-flex items-center justify-center gap-2.5 text-center font-medium hover:bg-opacity-90",
+          customClasses,
+        )}
         href={link}
       >
         {children}
