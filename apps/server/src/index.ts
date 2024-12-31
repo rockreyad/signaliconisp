@@ -8,6 +8,7 @@ import subscriptionRoute from './routes/subscription.routes';
 import { requestLogger } from './middleware/requestLogger';
 import { logger } from './utils/logger';
 import { env } from './utils/env';
+import paymentRoute from './routes/payment.routes';
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use('/api/bkash', bkashPaymentRoute);
 app.use('/api/users', userRoute);
 app.use('/api/packages', packageRoute);
 app.use('/api/subscriptions', subscriptionRoute);
+app.use('/api/payments', paymentRoute);
 
 app.get('/', (req: Request, res: Response) => {
   try {
