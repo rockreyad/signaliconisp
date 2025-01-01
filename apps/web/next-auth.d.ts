@@ -1,6 +1,6 @@
 import { DefaultSession } from "next-auth";
 
-interface ISubscription {
+export interface ISubscription {
   id: string;
   startDate: string;
   endDate: string;
@@ -12,7 +12,7 @@ interface ISubscription {
   };
 }
 
-interface IAddress {
+export interface IAddress {
   street: string;
   city: string;
   state: string;
