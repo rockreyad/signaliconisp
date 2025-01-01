@@ -3,7 +3,6 @@ import { authConfig } from "./auth.config";
 import Credentials from "next-auth/providers/credentials";
 import { getUserByPhoneNumber } from "./server/users";
 import { Session, User } from "next-auth";
-import { IAddress, ISubscription } from "../next-auth";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   ...authConfig,
@@ -36,8 +35,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             email: user.email,
             phoneNumber: user.phoneNumber,
             avatar: user.avatar || "",
-            subscriptions: user.subscriptions,
-            addresses: user.addresses,
           };
         } catch (error) {
           console.error("Authorization error:", error);
@@ -51,8 +48,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       if (user) {
         token.id = user.id;
         token.phoneNumber = user.phoneNumber;
-        token.subscriptions = user.subscriptions;
-        token.addresses = user.addresses;
       }
       return token;
     },
@@ -63,8 +58,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           ...session.user,
           id: token.id as string,
           phoneNumber: token.phoneNumber as string,
-          subscriptions: token.subscriptions as ISubscription[],
-          addresses: token.addresses as IAddress[],
         } satisfies User,
       };
     },

@@ -1,7 +1,9 @@
+# Root .gitignore
 node_modules
-
+.turbo
 .env
-
-.env.local
-
+.env.*
+!.env.example
+dist
 .DS_Store
+.vercel

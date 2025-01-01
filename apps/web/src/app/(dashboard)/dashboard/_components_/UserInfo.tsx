@@ -21,7 +21,7 @@ export const UserInfo = async () => {
         <ButtonDefault
           customClasses="absolute right-2 top-2 bg-primary text-white rounded-full px-4 py-2 md:block hidden"
           label="Recharge Now"
-          link="/dashboard/recharge"
+          link={{ pathname: "/dashboard/recharge" }}
         />
       ) : null}
       {/* Avatar and user basic info */}
@@ -49,7 +49,7 @@ export const UserInfo = async () => {
           <ButtonDefault
             customClasses="bg-primary text-white rounded-full px-4 py-2 block md:hidden"
             label="Recharge Now"
-            link="/dashboard/recharge"
+            link={{ pathname: "/dashboard/recharge" }}
           />
         ) : null}
       </div>
@@ -104,7 +104,7 @@ export const UserInfo = async () => {
           <p className="text-body-sm">
             <span className="text-gray-500">Address: </span>
             <span className="font-medium">
-              {`${session?.user?.addresses[0]?.street}, ${session?.user?.addresses[0]?.city}, ${session?.user?.addresses[0]?.state}, ${session?.user?.addresses[0]?.zip}`}
+              {/* {`${session?.user?.addresses[0]?.street}, ${session?.user?.addresses[0]?.city}, ${session?.user?.addresses[0]?.state}, ${session?.user?.addresses[0]?.zip}`} */}
             </span>
           </p>
         </div>

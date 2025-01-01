@@ -1,0 +1,4 @@
+# Add any version manager initialization here if needed
+# For example, for nvm:
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 

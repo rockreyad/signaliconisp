@@ -1,8 +1,8 @@
-import axios from "axios";
+import xior from "xior";
 import { env } from "@/env.mjs";
 
-// Create axios instance with default config
-const api = axios.create({
+// Create xior instance with default config
+const api = xior.create({
   baseURL: env.API_URL,
   headers: {
     "Content-Type": "application/json",
