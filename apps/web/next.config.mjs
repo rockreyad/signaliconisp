@@ -49,18 +49,7 @@ const nextConfig = {
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
     fileLoaderRule.exclude = /\.svg$/i;
 
-    // Add this for other asset types
-    config.module.rules.push({
-      test: /\.(png|jpg|jpeg|gif)$/i,
-      type: "asset/resource", // For static images (ensure the images are in the correct directory like public)
-    });
-
     return config;
-  },
-  transpilePackages: ["@your-org/shared"],
-  output: "standalone",
-  experimental: {
-    outputFileTracingRoot: undefined,
   },
 };
 

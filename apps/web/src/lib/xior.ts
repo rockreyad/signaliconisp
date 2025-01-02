@@ -7,8 +7,6 @@ const api = xior.create({
   headers: {
     "Content-Type": "application/json",
   },
-  // Add withCredentials if you're handling cookies
-  withCredentials: true,
 });
 
 // Add request interceptor for debugging

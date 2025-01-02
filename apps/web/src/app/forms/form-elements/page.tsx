@@ -1,7 +1,7 @@
 import React from "react";
 import FormElements from "@/components/FormElements";
 import { Metadata } from "next";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
+// import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 export const metadata: Metadata = {
   title: "Next.js Form Elements Page | NextAdmin - Next.js Dashboard Kit",
@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 const FormElementsPage = () => {
   return (
-    <DefaultLayout>
-      <FormElements />
-    </DefaultLayout>
+    // <DefaultLayout>
+    <FormElements />
+    // </DefaultLayout>
   );
 };
 
