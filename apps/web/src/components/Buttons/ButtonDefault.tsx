@@ -1,10 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import clsx from "clsx";
+import { UrlObject } from "url";
 
 interface ButtonPropTypes {
   label: string;
-  link: string;
+  link: UrlObject;
   customClasses: string;
   children?: React.ReactNode;
 }

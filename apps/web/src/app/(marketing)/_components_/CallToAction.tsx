@@ -1,6 +1,6 @@
 "use client";
-import HelixImage from "@/assets/images/helix2.png";
-import EmojiImage from "@/assets/images/emojistar.png";
+// import HelixImage from "@/assets/images/helix2.png";
+// import EmojiImage from "@/assets/images/emojistar.png";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -18,7 +18,7 @@ export const CallToAction = () => {
   return (
     <div className="bg-black py-[72px] text-white sm:py-24" ref={containerRef}>
       <div className="container relative max-w-xl">
-        <motion.div style={{ translateY }}>
+        {/* <motion.div style={{ translateY }}>
           <Image
             src={HelixImage}
             alt="helix"
@@ -31,7 +31,7 @@ export const CallToAction = () => {
             alt="emoji"
             className="absolute -top-[120px] right-[calc(100%+30px)]"
           />
-        </motion.div>
+        </motion.div> */}
 
         <h2 className="text-3xl font-bold tracking-tighter sm:text-6xl">
           Singla Icon

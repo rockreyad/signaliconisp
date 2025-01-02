@@ -1,6 +1,6 @@
 "use server";
 
-import api from "@/lib/axios";
+import api from "@/lib/xior";
 
 export async function createSubscription({
   userId,
@@ -9,29 +9,24 @@ export async function createSubscription({
   userId: string;
   packageId: string;
 }) {
-  const response = await fetch(`${process.env.API_URL}/api/subscriptions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ userId, packageId }),
+  const response = await api.post("/api/subscriptions", {
+    userId,
+    packageId,
   });
 
-  if (!response.ok) {
+  if (!response.status) {
     throw new Error("Failed to create subscription");
   }
 
-  const data = await response.json();
-
-  if (data.status && data.data.redirectURL) {
+  if (response.status && response.data.redirectURL) {
     return {
       success: true,
-      redirectURL: data.data.redirectURL,
-      paymentID: data.data.paymentID,
+      redirectURL: response.data.redirectURL,
+      paymentID: response.data.paymentID,
     };
   }
 
-  throw new Error(data.message || "Failed to initiate payment");
+  throw new Error(response.data.message || "Failed to initiate payment");
 }
 
 export async function getUserActiveSubscription(userId: string) {

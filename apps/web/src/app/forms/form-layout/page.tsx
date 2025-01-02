@@ -1,7 +1,7 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 
 import { Metadata } from "next";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
+// import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import SelectGroupOne from "@/components/FormElements/SelectGroup/SelectGroupOne";
 import Link from "next/link";
 import InputGroup from "@/components/FormElements/InputGroup";
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const FormLayout = () => {
   return (
-    <DefaultLayout>
+    <div>
       <Breadcrumb pageName="Form Layout" />
 
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
@@ -193,7 +193,7 @@ const FormLayout = () => {
           </div>
         </div>
       </div>
-    </DefaultLayout>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { createSubscription } from "@/server/subscriptions";
+// import { createSubscription } from "@/server/subscriptions";
 import clsx from "clsx";
 import React from "react";
 
@@ -69,14 +69,13 @@ export const Package = ({
               return;
             }
             try {
-              const result = await createSubscription({
-                userId: userId,
-                packageId: pkg.id,
-              });
-
-              if (result.success) {
-                window.location.href = result.redirectURL;
-              }
+              // const result = await createSubscription({
+              //   userId: userId,
+              //   packageId: pkg.id,
+              // });
+              // if (result.success) {
+              //   window.location.href = result.redirectURL;
+              // }
             } catch (error) {
               console.error("Subscription error:", error);
             }

@@ -1,5 +1,5 @@
 {
-  "name": "signaliconbd-isp-portal",
+  "name": "web",
   "version": "0.1.0",
   "private": true,
   "author": "Mahamud Hasan <rockreyad@gmail.com>",
@@ -14,9 +14,7 @@
     "prettier:check": "prettier --check ."
   },
   "dependencies": {
-    "@prisma/client": "^5.18.0",
     "apexcharts": "3.45.2",
-    "axios": "^1.7.9",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
     "flatpickr": "^4.6.13",
@@ -32,9 +30,10 @@
     "react-select": "^5.8.0",
     "react-table": "^7.8.0",
     "server-only": "^0.0.1",
-    "sharp": "^0.33.4",
+    "sharp": "0.32.6",
     "tailwind-merge": "^2.5.0",
     "tailwindcss-animate": "^1.0.7",
+    "xior": "^0.6.1",
     "zod": "^3.23.8",
     "zustand": "^5.0.2"
   },
@@ -57,10 +56,7 @@
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.1",
     "tsx": "^4.17.0",
-    "typescript": "^5.3.3"
-  },
-  "prisma": {
-    "schema": "src/prisma/schema.prisma"
+    "typescript": "^5"
   },
   "engines": {
     "node": ">=20.0.0"

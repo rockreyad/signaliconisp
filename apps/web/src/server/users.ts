@@ -1,4 +1,4 @@
-import api from "@/lib/axios";
+import api from "@/lib/xior";
 
 export async function getUserByPhoneNumber({
   phoneNumber,

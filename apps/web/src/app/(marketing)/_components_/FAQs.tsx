@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import PlusIcon from "@/assets/icons/plus.svg";
-import MinusIcon from "@/assets/icons/minus.svg";
+// import PlusIcon from "@/assets/icons/plus.svg";
+// import MinusIcon from "@/assets/icons/minus.svg";
 import { motion, AnimatePresence } from "framer-motion";
 const items = [
   {
@@ -56,7 +56,7 @@ const AccordinationItem = ({
     >
       <div className="flex items-center ">
         <span className="flex-1 text-lg font-bold">{question}</span>
-        {isOpen ? <MinusIcon /> : <PlusIcon />}
+        {/* {isOpen ? <MinusIcon /> : <PlusIcon />} */}
       </div>
       <AnimatePresence>
         {isOpen && (

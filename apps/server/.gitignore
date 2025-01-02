@@ -5,6 +5,9 @@
 .env*.local
 .env
 
+# turbo
+.turbo
+
 # misc
 .DS_Store
 *.pem
