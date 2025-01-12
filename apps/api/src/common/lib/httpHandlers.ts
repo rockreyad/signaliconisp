@@ -1,6 +1,6 @@
-import type { Response } from "express";
-import { ZodError, ZodSchema } from "zod";
-import { RequestHandler } from "express";
+import type { NextFunction, Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
+import type { ZodError, ZodSchema } from "zod";
 
 import { ServiceResponse } from "@/common/models/serviceResponse";
 
@@ -11,21 +11,20 @@ export const handleServiceResponse = (
   return response.status(serviceResponse.statusCode).send(serviceResponse);
 };
 
-export const validateRequest = (schema: ZodSchema): RequestHandler => {
-  return (req, res, next) => {
+export const validateRequest =
+  (schema: ZodSchema) => (req: Request, res: Response, next: NextFunction) => {
     try {
-      schema.parse({
-        body: req.body,
-        query: req.query,
-        params: req.params,
-      });
+      schema.parse({ body: req.body, query: req.query, params: req.params });
       next();
-    } catch (error) {
-      if (error instanceof ZodError) {
-        res.status(400).json(error.issues);
-        return;
-      }
-      res.status(500).json({ error });
+    } catch (err) {
+      const errorMessage = `Invalid input: ${(err as ZodError).errors.map((e) => e.message).join(", ")}`;
+      console.log("validateRequest errorMessage", errorMessage);
+      const statusCode = StatusCodes.BAD_REQUEST;
+      const serviceResponse = ServiceResponse.failure(
+        errorMessage,
+        null,
+        statusCode,
+      );
+      return handleServiceResponse(serviceResponse, res);
     }
   };
-};

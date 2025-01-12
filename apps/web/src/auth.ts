@@ -1,9 +1,8 @@
-import NextAuth, { CredentialsSignin } from "next-auth";
+import NextAuth, { CredentialsSignin, NextAuthResult } from "next-auth";
 import { authConfig } from "./config/auth.config";
 import Credentials from "next-auth/providers/credentials";
 import { Session, User } from "next-auth";
 import { getUser } from "./features/user/api/getUser";
-import { AuthError } from "next-auth";
 
 class CustomError extends CredentialsSignin {
   constructor(code: string) {
@@ -14,7 +13,7 @@ class CustomError extends CredentialsSignin {
   }
 }
 
-export const { auth, handlers, signIn, signOut } = NextAuth({
+const nextAuth = NextAuth({
   ...authConfig,
   session: {
     strategy: "jwt",
@@ -47,7 +46,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
+        token.id = user.id as string;
         token.phone = user.phone;
         token.username = user.username;
         token.fathersName = user.fathersName;
@@ -74,3 +73,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
   debug: process.env.NODE_ENV === "development",
 });
+
+export const handlers: NextAuthResult["handlers"] = nextAuth.handlers;
+export const auth: NextAuthResult["auth"] = nextAuth.auth;
+export const signIn: NextAuthResult["signIn"] = nextAuth.signIn;
+export const signOut: NextAuthResult["signOut"] = nextAuth.signOut;
