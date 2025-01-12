@@ -1,0 +1,30 @@
+node_modules
+
+# Environment variables
+.env
+.env.local
+
+# Turborepo
+.turbo
+
+# macOS
+.DS_Store
+
+# Docker
+docker-data
+
+# VSCode
+.vscode
+
+# ESLint
+.eslintcache
+
+# TypeScript
+.tsbuildinfo
+
+# Next.js
+.next
+
+# Build
+build
+dist

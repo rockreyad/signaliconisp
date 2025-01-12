@@ -1,0 +1,33 @@
+# Production
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: ./apps/app/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    networks:
+      - app_network
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 3001:3001
+    networks:
+      - app_network
+  db:
+    extends:
+      file: docker-compose.base.yml
+      service: db
+    restart: unless-stopped
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    external: true

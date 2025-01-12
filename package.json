@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "name": "signal-icon-isp",
+  "version": "0.0.1",
+  "author": "Mahamud Hasan <rockreyad@gmail.com>",
+  "scripts": {
+    "changeset": "changeset",
+    "publish:packages": "changeset publish",
+    "version:packages": "turbo build && changeset version",
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "type-check": "turbo type-check",
+    "clean": "turbo clean"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "latest",
+    "@changesets/cli": "latest",
+    "knip": "^5.41.1",
+    "lint-staged": "^15.3.0",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "turbo": "latest"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,md}": "prettier --write"
+  },
+  "packageManager": "pnpm@9.15.3",
+  "engines": {
+    "node": ">=20"
+  }
+}

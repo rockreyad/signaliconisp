@@ -1,0 +1,22 @@
+services:
+  db:
+    extends:
+      file: ./packages/database/docker-compose.yml
+      service: db
+    env_file:
+      - ./packages/database/.env
+    networks:
+      - app_network
+
+  # mailhog:
+  #   extends:
+  #     file: ./apps/api/docker-compose.yml
+  #     service: mailhog
+  #   env_file:
+  #     - ./apps/api/.env
+  #   networks:
+  #     - app_network
+
+networks:
+  app_network:
+    driver: bridge
