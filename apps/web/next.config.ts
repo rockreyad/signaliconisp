@@ -7,8 +7,9 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     authInterrupts: true,
+    typedRoutes: true,
   },
-  transpilePackages: ["@repo"],
+  transpilePackages: ["@repo/database", "@repo/validation"],
   logging: {
     fetches: {
       fullUrl: true,
@@ -16,11 +17,10 @@ const nextConfig: NextConfig = {
   },
   async rewrites() {
     return [
-      // TODO:FIX IT
-      // {
-      //   source: "/api/:path*",
-      //   destination: `${process.env.EXTERNAL_SERVER_URL}/:path*`,
-      // },
+      {
+        source: "/api/:path*",
+        destination: `${process.env.NEXT_PUBLIC_EXTERNAL_SERVER_URL}/api/:path*`,
+      },
     ];
   },
 };
