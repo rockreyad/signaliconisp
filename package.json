@@ -44,5 +44,10 @@
         "react-dom": "19"
       }
     }
-  }
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "projectPath": "apps/web"
 }
