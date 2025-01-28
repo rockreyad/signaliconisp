@@ -43,6 +43,9 @@
         "react": "19",
         "react-dom": "19"
       }
+    },
+    "overrides": {
+      "next": "15.1.4"
     }
   },
   "workspaces": [
