@@ -1,58 +1,57 @@
-import NextAuth from "next-auth";
-import { authConfig } from "./auth.config";
+import NextAuth, { CredentialsSignin, NextAuthResult } from "next-auth";
+import { authConfig } from "./config/auth.config";
 import Credentials from "next-auth/providers/credentials";
-import { getUserByPhoneNumber } from "./server/users";
 import { Session, User } from "next-auth";
-import { IAddress, ISubscription } from "../next-auth";
+import { getUser } from "./features/user/api/getUser";
 
-export const { auth, handlers, signIn, signOut } = NextAuth({
+class CustomError extends CredentialsSignin {
+  constructor(code: string) {
+    super();
+    this.code = code;
+    this.message = code;
+    this.stack = undefined;
+  }
+}
+
+const nextAuth = NextAuth({
   ...authConfig,
   session: {
     strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-    updateAge: 24 * 60 * 60, // 24 hours
   },
   providers: [
     Credentials({
       async authorize(credentials): Promise<User | null> {
+        const { usernameOrPhone } = credentials;
+        if (!usernameOrPhone) {
+          throw new CustomError("username_or_phone_required");
+        }
+        let user: User | null = null;
         try {
-          const { usernameOrPhone } = credentials;
-
-          if (!usernameOrPhone) {
-            return null;
-          }
-
-          const user = await getUserByPhoneNumber({
+          user = await getUser({
             phoneNumber: usernameOrPhone as string,
           });
-
-          if (!user) {
-            return null;
-          }
-
-          return {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            phoneNumber: user.phoneNumber,
-            avatar: user.avatar || "",
-            subscriptions: user.subscriptions,
-            addresses: user.addresses,
-          };
-        } catch (error) {
+        } catch (error: any) {
           console.error("Authorization error:", error);
-          return null;
+          throw new CustomError(error.message);
         }
+
+        if (!user) {
+          throw new CustomError("user_not_found");
+        }
+
+        return user;
       },
     }),
   ],
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
-        token.phoneNumber = user.phoneNumber;
-        token.subscriptions = user.subscriptions;
-        token.addresses = user.addresses;
+        token.id = user.id as string;
+        token.phone = user.phone;
+        token.username = user.username;
+        token.fathersName = user.fathersName;
+        token.createdAt = user.createdAt;
+        token.updatedAt = user.updatedAt;
       }
       return token;
     },
@@ -62,11 +61,20 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         user: {
           ...session.user,
           id: token.id as string,
-          phoneNumber: token.phoneNumber as string,
-          subscriptions: token.subscriptions as ISubscription[],
-          addresses: token.addresses as IAddress[],
+          phone: token.phone as string,
+          username: token.username as string,
+          fathersName: token.fathersName as string,
+          createdAt: token.createdAt as string,
+          updatedAt: token.updatedAt as string,
         } satisfies User,
       };
     },
   },
+  secret: process.env.AUTH_SECRET,
+  debug: process.env.NODE_ENV === "development",
 });
+
+export const handlers: NextAuthResult["handlers"] = nextAuth.handlers;
+export const auth: NextAuthResult["auth"] = nextAuth.auth;
+export const signIn: NextAuthResult["signIn"] = nextAuth.signIn;
+export const signOut: NextAuthResult["signOut"] = nextAuth.signOut;

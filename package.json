@@ -1,47 +1,56 @@
 {
-  "name": "signaliconisp",
-  "version": "1.0.0",
-  "description": "Signal Icon ISP",
-  "main": "index.js",
-  "lint-staged": {
-    "**/*.{js,ts,tsx}": [
-      "pnpm lint"
-    ],
-    "**/*": "prettier --write --ignore-unknown"
-  },
+  "private": true,
+  "name": "signal-icon-isp",
+  "version": "0.0.1",
+  "author": "Mahamud Hasan <rockreyad@gmail.com>",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "pnpm -r lint",
-    "lint:strict": "pnpm -r lint:strict",
-    "lint:fix": "pnpm -r lint:fix",
-    "format": "prettier --write .",
-    "prepare": "husky"
+    "changeset": "changeset",
+    "publish:packages": "changeset publish",
+    "version:packages": "turbo build && changeset version",
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "type-check": "turbo type-check",
+    "clean": "turbo clean",
+    "db:migrate:dev": "pnpm run --filter=@repo/database migrate:dev",
+    "db:migrate:deploy": "pnpm run --filter=@repo/database migrate:deploy",
+    "db:push": "pnpm run --filter=@repo/database push",
+    "db:pull": "pnpm run --filter=@repo/database pull",
+    "db:generate": "pnpm run --filter=@repo/database generate",
+    "db:studio": "pnpm run --filter=@repo/database studio"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "type": "module",
-  "packageManager": "pnpm@9.8.0",
-  "overrides": {},
   "devDependencies": {
-    "@commitlint/cli": "^19.6.1",
-    "@commitlint/config-conventional": "^19.6.0",
-    "@eslint/js": "^9.17.0",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "@typescript-eslint/utils": "^7.0.0",
-    "eslint": "^9.17.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-prettier": "^5.2.1",
-    "globals": "^15.14.0",
-    "husky": "^9.1.7",
+    "@changesets/changelog-github": "latest",
+    "@changesets/cli": "latest",
+    "knip": "^5.41.1",
     "lint-staged": "^15.3.0",
     "prettier": "^3.4.2",
-    "typescript": "^5.7.2"
-  }
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "turbo": "latest",
+    "typescript": "^5.7.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,md}": "prettier --write"
+  },
+  "packageManager": "pnpm@9.15.3",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9.15.3"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "19",
+        "react-dom": "19"
+      }
+    },
+    "overrides": {
+      "next": "15.1.4"
+    }
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "projectPath": "apps/web"
 }
