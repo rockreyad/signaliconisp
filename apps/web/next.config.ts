@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   experimental: {
     authInterrupts: true,
   },
+  transpilePackages: ["@repo"],
   logging: {
     fetches: {
       fullUrl: true,
