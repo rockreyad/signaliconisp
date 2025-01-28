@@ -1,6 +1,6 @@
-const { resolve } = require('node:path');
+const { resolve } = require("node:path");
 
-const project = resolve(process.cwd(), 'tsconfig.json');
+const project = resolve(process.cwd(), "tsconfig.json");
 
 /*
  * This is a custom ESLint configuration for use with
@@ -12,36 +12,64 @@ const project = resolve(process.cwd(), 'tsconfig.json');
  */
 
 module.exports = {
-  extends: [
-    ...[
-      '@vercel/style-guide/eslint/node',
-      '@vercel/style-guide/eslint/typescript',
-      '@vercel/style-guide/eslint/browser',
-      '@vercel/style-guide/eslint/react',
-      '@vercel/style-guide/eslint/next',
-    ].map(require.resolve),
-    'turbo',
+  extends: ["next/core-web-vitals", "plugin:@tanstack/query/recommended"],
+  plugins: [
+    "@typescript-eslint",
+    "only-warn",
+    "simple-import-sort",
+    "prettier",
   ],
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     project,
-  },
-  globals: {
-    React: true,
-    JSX: true,
+    ecmaVersion: "latest",
+    sourceType: "module",
+    jsx: true,
   },
   settings: {
-    'import/resolver': {
+    "import/resolver": {
       typescript: {
         project,
       },
-      node: {
-        extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx'],
-      },
+    },
+    react: {
+      version: "detect",
     },
   },
-  ignorePatterns: ['node_modules/', 'dist/'],
+  ignorePatterns: ["node_modules/", "dist/"],
   // add rules configurations here
   rules: {
-    'import/no-default-export': 'off',
+    // TypeScript Rules - All as warnings
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/consistent-type-imports": "warn",
+
+    // Import Rules
+    "import/no-default-export": "off",
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "warn",
+
+    // React Rules
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "warn",
+    "react-hooks/exhaustive-deps": "warn",
+
+    // Prettier Rules
+    "prettier/prettier": [
+      "warn",
+      {
+        singleQuote: false,
+        trailingComma: "all",
+        tabWidth: 2,
+      },
+    ],
+
+    // General Rules
+    "no-console": ["warn", { allow: ["warn", "error", "info"] }],
+    "no-unused-vars": "off", // TypeScript handles this
+    "prefer-const": "warn",
+    "no-duplicate-imports": "warn",
   },
 };

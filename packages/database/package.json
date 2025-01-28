@@ -1,16 +1,23 @@
 {
   "name": "@repo/database",
   "version": "0.0.0",
+  "type": "module",
   "publishConfig": {
     "access": "public"
   },
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./src/index.ts"
+    }
   },
+  "main": "./dist/index.js",
+  "types": "./src/index.ts",
   "prisma": {
     "schema": "./src/schema.prisma"
   },
   "scripts": {
+    "build": "tsup",
     "seed": "tsx ./src/scripts/seed.ts",
     "create-packages": "tsx ./src/scripts/createPackages.ts",
     "migrate:dev": "prisma migrate dev",
@@ -19,6 +26,21 @@
     "push": "prisma db push",
     "pull": "prisma db pull",
     "generate": "prisma generate"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "format": [
+      "esm"
+    ],
+    "dts": true,
+    "resolveExtensions": [
+      ".ts",
+      ".js"
+    ],
+    "splitting": false,
+    "clean": true
   },
   "dependencies": {
     "@prisma/client": "^5.8.1",
@@ -29,6 +51,7 @@
     "@repo/tsconfig": "workspace:*",
     "@types/node": "22.10.5",
     "prisma": "^5.8.1",
-    "typescript": "^5.7.2"
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3"
   }
 }
