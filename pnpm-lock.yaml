@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  next: 15.1.4
+
 importers:
 
   .:
@@ -1989,7 +1992,7 @@ packages:
   cookies-next@5.0.2:
     resolution: {integrity: sha512-Ft5yXMbN6wMfgLiL5TMyPnxsjkW6UEjZw0YMoDMiF3F6iYdFPjiJEMugx/sivUr8G+0xPG80lBYqI2b+VquSuw==}
     peerDependencies:
-      next: '>=15.0.0'
+      next: 15.1.4
 
   core-js-compat@3.39.0:
     resolution: {integrity: sha512-VgEUx3VwlExr5no0tXlBt+silBvhTryPwCXRI2Id1PN8WTKu7MreethvddqOubrYxkFdv/RnYrqlv1sFNAUelw==}
@@ -3315,7 +3318,7 @@ packages:
     peerDependencies:
       '@simplewebauthn/browser': ^9.0.1
       '@simplewebauthn/server': ^9.0.2
-      next: ^14.0.0-0 || ^15.0.0-0
+      next: 15.1.4
       nodemailer: ^6.6.5
       react: ^18.2.0 || ^19.0.0-0
     peerDependenciesMeta:
@@ -3331,7 +3334,7 @@ packages:
     engines: {node: '>=18.17'}
     peerDependencies:
       '@sinclair/typebox': '>= 0.33.3'
-      next: '>= 14.0.0'
+      next: 15.1.4
       react: '>= 18.2.0'
       react-dom: '>= 18.2.0'
       valibot: '>= 0.36.0'

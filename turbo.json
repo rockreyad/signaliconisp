@@ -1,7 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local", "**/.env", ".env"],
-  "globalEnv": ["NODE_ENV", "NEXT_PUBLIC_*", "VERCEL_*"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -10,8 +9,7 @@
         "!.next/cache/**",
         "dist/**",
         "node_modules/.prisma/**"
-      ],
-      "env": ["NEXT_PUBLIC_BASE_URL", "NEXT_PUBLIC_EXTERNAL_SERVER_URL"]
+      ]
     },
     "type-check": {
       "cache": false,
