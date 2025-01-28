@@ -1,10 +1,27 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local", "**/.env", ".env"],
+  "globalEnv": ["NODE_ENV", "NEXT_PUBLIC_*", "VERCEL_*"],
   "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "dist/**",
+        "node_modules/.prisma/**"
+      ]
+    },
     "type-check": {
       "cache": false,
       "persistent": true
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "cache": false
     }
   }
 }
