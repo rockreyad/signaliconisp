@@ -19,7 +19,7 @@
   "scripts": {
     "build": "prisma generate && tsup",
     "seed": "tsx ./src/scripts/seed.ts",
-    "create-packages": "tsx ./src/scripts/createPackages.ts",
+    "create:packages": "tsx ./src/scripts/createPackages.ts",
     "migrate:dev": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy",
     "studio": "prisma studio",

@@ -2,10 +2,33 @@
   "name": "@repo/validation",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "exports": {
-    "./*": "./src/*.ts"
+    "./common": {
+      "import": "./dist/common.js",
+      "types": "./dist/common.d.ts"
+    },
+    "./user": {
+      "import": "./dist/user.js",
+      "types": "./dist/user.d.ts"
+    },
+    "./auth": {
+      "import": "./dist/auth.js",
+      "types": "./dist/auth.d.ts"
+    },
+    "./api": {
+      "import": "./dist/api.js",
+      "types": "./dist/api.d.ts"
+    },
+    "./package": {
+      "import": "./dist/package.js",
+      "types": "./dist/package.d.ts"
+    }
   },
-  "scripts": {},
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
   "dependencies": {
     "http-status-codes": "^2.3.0",
     "zod": "^3.24.1"
@@ -14,6 +37,7 @@
     "@repo/tsconfig": "workspace:*",
     "@repo/database": "workspace:*",
     "@types/node": "22.10.2",
+    "tsup": "^8.0.0",
     "typescript": "^5.7.2"
   }
 }

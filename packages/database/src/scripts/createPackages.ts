@@ -56,12 +56,12 @@ async function createPackages() {
       packages.map((pkg) =>
         db.internetPackage.create({
           data: pkg,
-        }),
-      ),
+        })
+      )
     );
 
     console.info(
-      `Successfully created ${createdPackages.length} internet packages:`,
+      `Successfully created ${createdPackages.length} internet packages:`
     );
 
     // Log created packages in a table format
@@ -71,7 +71,7 @@ async function createPackages() {
         Speed: `${pkg.speed} Mbps`,
         Price: `${pkg.price} BDT`,
         Duration: `${pkg.duration} days`,
-      })),
+      }))
     );
 
     return createdPackages;
@@ -79,14 +79,22 @@ async function createPackages() {
     console.error("Failed to create packages:");
     console.error(error);
     process.exit(1);
+  } finally {
+    await db.$disconnect();
   }
 }
 
 // Execute if this file is run directly
-if (require.main === module) {
-  createPackages().then(() => {
-    console.info("Packages created successfully");
-  });
+if (import.meta.url.endsWith("createPackages.ts")) {
+  createPackages()
+    .then(() => {
+      console.info("✅ Packages created successfully");
+      process.exit(0);
+    })
+    .catch((error) => {
+      console.error("❌ Failed to create packages:", error);
+      process.exit(1);
+    });
 }
 
 export { createPackages };

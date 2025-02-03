@@ -6,9 +6,9 @@ import { ServiceResponse } from "@/common/models/serviceResponse";
 
 export const handleServiceResponse = (
   serviceResponse: ServiceResponse<any>,
-  response: Response,
-) => {
-  return response.status(serviceResponse.statusCode).send(serviceResponse);
+  response: Response
+): void => {
+  response.status(serviceResponse.statusCode).send(serviceResponse);
 };
 
 export const validateRequest =
@@ -23,7 +23,7 @@ export const validateRequest =
       const serviceResponse = ServiceResponse.failure(
         errorMessage,
         null,
-        statusCode,
+        statusCode
       );
       return handleServiceResponse(serviceResponse, res);
     }

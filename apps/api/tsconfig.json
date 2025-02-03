@@ -9,7 +9,6 @@
     },
     "moduleResolution": "Bundler",
     "module": "ESNext",
-    "jsx": "react-jsx",
     "allowImportingTsExtensions": true,
     "emitDeclarationOnly": false,
     "noEmit": true
