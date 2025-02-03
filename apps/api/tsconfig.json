@@ -5,7 +5,8 @@
     "types": ["vitest/globals"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@repo/database/*": ["../../packages/database/src/*"]
     },
     "moduleResolution": "Bundler",
     "module": "ESNext",

@@ -8,39 +8,26 @@
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "types": "./src/index.ts"
+      "types": "./dist/index.d.ts"
     }
   },
-  "main": "./dist/index.js",
-  "types": "./src/index.ts",
   "prisma": {
     "schema": "./src/schema.prisma"
   },
   "scripts": {
-    "build": "prisma generate && tsup",
-    "seed": "tsx ./src/scripts/seed.ts",
-    "create:packages": "tsx ./src/scripts/createPackages.ts",
-    "migrate:dev": "prisma migrate dev",
-    "migrate:deploy": "prisma migrate deploy",
-    "studio": "prisma studio",
-    "push": "prisma db push",
-    "pull": "prisma db pull",
-    "generate": "prisma generate"
-  },
-  "tsup": {
-    "entry": [
-      "src/index.ts"
-    ],
-    "format": [
-      "esm"
-    ],
-    "dts": true,
-    "resolveExtensions": [
-      ".ts",
-      ".js"
-    ],
-    "splitting": false,
-    "clean": true
+    "build": "tsup",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:seed": "tsx ./src/scripts/seed.ts",
+    "db:create:packages": "tsx ./src/scripts/createPackages.ts",
+    "dev": "tsup src/* --watch",
+    "format": "prisma format",
+    "generate": "prisma generate",
+    "lint": "eslint . --max-warnings 0",
+    "prebuild": "pnpm run generate",
+    "predev": "pnpm run generate",
+    "studio": "prisma studio"
   },
   "dependencies": {
     "@prisma/client": "^5.8.1",
@@ -51,7 +38,6 @@
     "@repo/tsconfig": "workspace:*",
     "@types/node": "22.10.5",
     "prisma": "^5.8.1",
-    "tsup": "^8.3.5",
     "typescript": "^5.7.3"
   }
 }
