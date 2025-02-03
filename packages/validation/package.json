@@ -2,10 +2,15 @@
   "name": "@repo/validation",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "exports": {
-    "./*": "./src/*.ts"
+    ".": "./src/index.ts",
+    "./auth": "./src/auth.ts",
+    "./common": "./src/common.ts",
+    "./user": "./src/user.ts",
+    "./api": "./src/api.ts",
+    "./package": "./src/package.ts"
   },
-  "scripts": {},
   "dependencies": {
     "http-status-codes": "^2.3.0",
     "zod": "^3.24.1"

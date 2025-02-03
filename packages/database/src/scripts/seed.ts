@@ -1,16 +1,18 @@
 import { db } from "@/db";
-import { createPackages } from "./createPackages";
 import { PaymentStatus, SubscriptionStatus } from "@prisma/client";
 
 async function main() {
   console.log("🌱 Starting database seeding...");
 
-  //find packages first if not then create packages
-  let packages;
-  packages = await db.internetPackage.findMany();
+  // Verify packages exist
+  const packages = await db.internetPackage.findMany();
   if (packages.length === 0) {
-    packages = await createPackages();
+    console.error(
+      "❌ No packages found! Please run 'pnpm create:packages' first"
+    );
+    process.exit(1);
   }
+  console.log(`📦 Found ${packages.length} packages`);
 
   // Create Users with Addresses and Subscriptions
   const users = await Promise.all([
@@ -22,7 +24,7 @@ async function main() {
         username: "rockreyad",
         fathersName: "Mr Boss",
         password: "12345678",
-        addresses: {
+        address: {
           create: {
             street: "5 no ward,BujrukBoyalia",
             city: "Gobindaganj",
@@ -51,7 +53,7 @@ async function main() {
         username: "janesmith",
         fathersName: "William Smith",
         password: "12345678",
-        addresses: {
+        address: {
           create: {
             street: "456 Park Avenue",
             city: "Chittagong",
@@ -89,8 +91,8 @@ async function main() {
           merchantInvoiceNumber: `INV-${Math.random().toString(36).substr(2, 9)}`,
           status: PaymentStatus.COMPLETED,
         },
-      }),
-    ),
+      })
+    )
   );
 
   console.log("✅ Created sample payments");

@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     authInterrupts: true,
     typedRoutes: true,
   },
-  transpilePackages: ["@repo/database", "@repo/validation"],
+  transpilePackages: ["@repo/validation"],
   logging: {
     fetches: {
       fullUrl: true,

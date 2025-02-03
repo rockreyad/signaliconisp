@@ -2,12 +2,9 @@
   "compilerOptions": {
     "lib": ["esnext", "dom"],
     "target": "ESNext",
-    "module": "CommonJS",
+    "module": "ESNext",
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "outDir": "dist",
     "importsNotUsedAsValues": "remove",
     "strict": true,
