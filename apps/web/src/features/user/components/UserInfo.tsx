@@ -1,10 +1,11 @@
-import React from "react";
-import Image from "next/image";
-import { auth } from "@/auth";
-import dayjs from "dayjs";
 import clsx from "clsx";
+import dayjs from "dayjs";
+import Image from "next/image";
+import React from "react";
+
+import { auth } from "@/auth";
 import ButtonDefault from "@/components/ButtonDefault";
-import { getSubscriptions } from "../api/getSubscriptions";
+
 import { getUserProfile } from "../api/getUserProfile";
 
 export const UserInfo = async () => {
@@ -13,8 +14,6 @@ export const UserInfo = async () => {
   const user = await getUserProfile({
     userId: session?.user?.id || "",
   });
-
-  console.log("user", user);
 
   return (
     <div className="relative flex flex-col gap-4 rounded-[10px] bg-white p-6 shadow-1 dark:bg-gray-dark">

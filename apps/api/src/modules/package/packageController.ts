@@ -1,6 +1,7 @@
 import type { Request, RequestHandler, Response } from "express";
 
 import { handleServiceResponse } from "@/common/lib/httpHandlers";
+
 import { packageService } from "./packageService";
 
 const getPackages: RequestHandler = async (_req: Request, res: Response) => {

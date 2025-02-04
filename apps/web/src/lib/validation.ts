@@ -1,5 +1,6 @@
-import { passwordRegex } from "@/lib/regex";
 import { z } from "zod";
+
+import { passwordRegex } from "@/lib/regex";
 
 export const commonValidations = {
   email: z

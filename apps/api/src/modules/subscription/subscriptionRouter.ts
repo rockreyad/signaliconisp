@@ -1,19 +1,18 @@
 import { OpenAPIRegistry } from "@asteasolutions/zod-to-openapi";
 import express, { type Router } from "express";
+import { StatusCodes } from "http-status-codes";
+import { z } from "zod";
+
+import { createApiResponse } from "@/api-docs/openAPIResponseBuilders";
+import { validateRequest } from "@/common/lib/httpHandlers";
+
+import { PackageSchema } from "../package/packageModel";
+import { subscriptionController } from "./subscriptionController";
 import {
   CreateSubscriptionSchema,
   GetSubscriptionSchema,
-} from "./subscriptionModel";
-import {
   SubscriptionSchema,
-  CreateSubscriptionResponse,
 } from "./subscriptionModel";
-import { createApiResponse } from "@/api-docs/openAPIResponseBuilders";
-import { validateRequest } from "@/common/lib/httpHandlers";
-import { subscriptionController } from "./subscriptionController";
-import { z } from "zod";
-import { StatusCodes } from "http-status-codes";
-import { PackageSchema } from "../package/packageModel";
 
 export const subscriptionRouter: Router = express.Router();
 export const subscriptionRegistry = new OpenAPIRegistry();

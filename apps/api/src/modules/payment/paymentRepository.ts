@@ -1,5 +1,7 @@
-import { db, Prisma } from "@repo/database";
-import { CreatePayment, GetPayment, UpdatePayment } from "./paymentModel";
+import type { Prisma } from "@repo/database";
+import { db } from "@repo/database";
+
+import type { CreatePayment, GetPayment, UpdatePayment } from "./paymentModel";
 
 const createPayment = async (data: CreatePayment) => {
   const payment = await db.payment.create({

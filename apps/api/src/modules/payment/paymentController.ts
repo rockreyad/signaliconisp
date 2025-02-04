@@ -1,10 +1,12 @@
 import type { Request, RequestHandler, Response } from "express";
-import { CreatePayment, GetPayment, GetPaymentById } from "./paymentModel";
-import { handleServiceResponse } from "@/common/lib/httpHandlers";
-import { paymentService } from "./paymentService";
-import { ServiceResponse } from "@/common/models/serviceResponse";
 import { StatusCodes } from "http-status-codes";
+
+import { handleServiceResponse } from "@/common/lib/httpHandlers";
+import { ServiceResponse } from "@/common/models/serviceResponse";
+
 import { bkashService } from "../bkash/bkashService";
+import type { CreatePayment, GetPayment, GetPaymentById } from "./paymentModel";
+import { paymentService } from "./paymentService";
 
 const createPayment: RequestHandler = async (req: Request, res: Response) => {
   const data = req.body as CreatePayment;

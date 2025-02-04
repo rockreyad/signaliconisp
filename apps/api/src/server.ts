@@ -1,23 +1,21 @@
+import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
 import cors from "cors";
 import express, { type Express } from "express";
 import helmet from "helmet";
+import { z } from "zod";
 
 import { openAPIRouter } from "@/api-docs/openAPIRouter";
 import { env } from "@/common/lib/env";
 import errorHandler from "@/middlewares/errorHandler";
+import notFoundHandler from "@/middlewares/notFoundHandler";
+import rateLimiter from "@/middlewares/rateLimiter";
+import requestLogger from "@/middlewares/requestLogger";
 import { healthCheckRouter } from "@/modules/healthCheck/healthCheckRouter";
 
-import notFoundHandler from "@/middlewares/notFoundHandler";
-import requestLogger from "@/middlewares/requestLogger";
-
-import rateLimiter from "@/middlewares/rateLimiter";
-import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
-import { z } from "zod";
-
-import { userRouter } from "./modules/user/userRouter";
 import { packageRouter } from "./modules/package/packageRouter";
-import { subscriptionRouter } from "./modules/subscription/subscriptionRouter";
 import { paymentRouter } from "./modules/payment/paymentRouter";
+import { subscriptionRouter } from "./modules/subscription/subscriptionRouter";
+import { userRouter } from "./modules/user/userRouter";
 
 extendZodWithOpenApi(z);
 

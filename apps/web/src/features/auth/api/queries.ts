@@ -1,7 +1,8 @@
-import { apiRoutes } from "@/config";
-import { apiClient } from "@/lib/api-client";
 // import type { Session } from '@repo/validation/user';
 import { useQuery } from "@tanstack/react-query";
+
+import { apiRoutes } from "@/config";
+import { apiClient } from "@/lib/api-client";
 
 export const authKeys = {
   session: ["session"],

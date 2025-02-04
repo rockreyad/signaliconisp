@@ -1,6 +1,7 @@
-import { FetchOptions } from "@/lib/api";
-import { env } from "@/lib/env";
 import type { ApiResponse } from "@repo/validation/api";
+
+import type { FetchOptions } from "@/lib/api";
+import { env } from "@/lib/env";
 
 const API_BASE_URL = env.NEXT_PUBLIC_EXTERNAL_SERVER_URL;
 

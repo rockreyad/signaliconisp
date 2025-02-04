@@ -1,6 +1,8 @@
 import "@/assets/styles/globals.css";
-import PublicHeader from "@/components/global/PublicHeader";
+
 import type { Metadata } from "next";
+
+import PublicHeader from "@/components/global/PublicHeader";
 
 export const metadata: Metadata = {
   title: "Create Next App",

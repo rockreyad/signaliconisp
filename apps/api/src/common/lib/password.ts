@@ -14,4 +14,4 @@ const verifyPassword = async (
   return await verify(hashedPassword, plainTextPassword);
 };
 
-export { verifyPassword, hashPassword };
+export { hashPassword, verifyPassword };

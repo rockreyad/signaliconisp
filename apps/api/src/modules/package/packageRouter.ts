@@ -1,9 +1,11 @@
 import { OpenAPIRegistry } from "@asteasolutions/zod-to-openapi";
 import express, { type Router } from "express";
-import { GetPackageSchema, PackageSchema } from "./packageModel";
 import z from "zod";
+
 import { createApiResponse } from "@/api-docs/openAPIResponseBuilders";
+
 import { packageController } from "./packageController";
+import { GetPackageSchema, PackageSchema } from "./packageModel";
 
 export const packageRegistry = new OpenAPIRegistry();
 export const packageRouter: Router = express.Router();

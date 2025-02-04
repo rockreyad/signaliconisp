@@ -1,13 +1,14 @@
 "use server";
 
-import { signIn, signOut } from "@/auth";
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
-import { signInSchema } from "@repo/validation/auth";
+import type { SubmissionResult } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
-import { afterLoginUrl } from "@/config";
-import { SubmissionResult } from "@conform-to/react";
+import { signInSchema } from "@repo/validation/auth";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { AuthError } from "next-auth";
+
+import { signIn, signOut } from "@/auth";
+import { afterLoginUrl } from "@/config";
 import { env } from "@/lib/env";
 
 export async function signin(prevState: unknown, formData: FormData) {

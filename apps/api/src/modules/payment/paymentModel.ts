@@ -1,4 +1,3 @@
-import { commonValidations } from "@repo/validation/common";
 import { z } from "zod";
 
 export const PaymentSchema = z.object({

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Sidebar from "./PrivateSidebar";
+
 import PrivateHeader from "./PrivateHeader";
+import Sidebar from "./PrivateSidebar";
 
 const PrivatePageWrapper: React.FC<{ children: React.ReactNode }> = ({
   children,

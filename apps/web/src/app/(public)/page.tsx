@@ -1,4 +1,5 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+
 import { CallToAction } from "@/components/public/CallToAction";
 import { FAQs } from "@/components/public/Faqs";
 import { Hero } from "@/components/public/Hero";

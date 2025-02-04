@@ -1,7 +1,8 @@
+import type { Metadata } from "next";
+
 import { auth } from "@/auth";
 import { getPayments } from "@/features/transaction/api/getPayments";
 import { InvoiceTable } from "@/features/transaction/components/InvoiceTable";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Transactions",

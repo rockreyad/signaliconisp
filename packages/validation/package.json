@@ -9,7 +9,9 @@
     "./common": "./src/common.ts",
     "./user": "./src/user.ts",
     "./api": "./src/api.ts",
-    "./package": "./src/package.ts"
+    "./package": "./src/package.ts",
+    "./payment": "./src/payment.ts",
+    "./subscription": "./src/subscription.ts"
   },
   "dependencies": {
     "http-status-codes": "^2.3.0",

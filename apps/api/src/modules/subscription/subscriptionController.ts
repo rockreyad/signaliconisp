@@ -1,12 +1,13 @@
 import type { Request, RequestHandler, Response } from "express";
 
 import { handleServiceResponse } from "@/common/lib/httpHandlers";
-import { subscriptionService } from "./subscriptionService";
-import {
+
+import type {
   CreateSubscription,
   GetSubscription,
   UpdateSubscription,
 } from "./subscriptionModel";
+import { subscriptionService } from "./subscriptionService";
 
 const getSubscription: RequestHandler = async (req: Request, res: Response) => {
   const { userId, status } = req.query as GetSubscription;

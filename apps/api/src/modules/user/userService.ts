@@ -1,7 +1,9 @@
+import { StatusCodes } from "http-status-codes";
+
 import { ServiceResponse } from "@/common/models/serviceResponse";
 import { userRepository } from "@/modules/user/userRepository";
-import { StatusCodes } from "http-status-codes";
-import { GetUser } from "./userModel";
+
+import type { GetUser } from "./userModel";
 
 const getUser = async (data: GetUser) => {
   const user = await userRepository.getUserById(data);

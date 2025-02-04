@@ -1,6 +1,7 @@
+import { StatusCodes } from "http-status-codes";
+
 import { ServiceResponse } from "@/common/models/serviceResponse";
 import { packageRepository } from "@/modules/package/packageRepository";
-import { StatusCodes } from "http-status-codes";
 
 const getPackages = async () => {
   const packages = await packageRepository.getPackages();

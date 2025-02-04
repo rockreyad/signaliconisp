@@ -1,7 +1,9 @@
 import { commonValidations } from "@repo/validation/common";
 import { z } from "zod";
+
+import type { ServiceResponse } from "@/common/models/serviceResponse";
+
 import { PaymentSchema } from "../payment/paymentModel";
-import { ServiceResponse } from "@/common/models/serviceResponse";
 
 export const SubscriptionSchema = z.object({
   id: z.string().cuid(),

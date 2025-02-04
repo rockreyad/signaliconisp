@@ -8,7 +8,7 @@ async function main() {
   const packages = await db.internetPackage.findMany();
   if (packages.length === 0) {
     console.error(
-      "❌ No packages found! Please run 'pnpm create:packages' first"
+      "❌ No packages found! Please run 'pnpm create:packages' first",
     );
     process.exit(1);
   }
@@ -91,8 +91,8 @@ async function main() {
           merchantInvoiceNumber: `INV-${Math.random().toString(36).substr(2, 9)}`,
           status: PaymentStatus.COMPLETED,
         },
-      })
-    )
+      }),
+    ),
   );
 
   console.log("✅ Created sample payments");

@@ -1,11 +1,11 @@
 import { StatusCodes } from "http-status-codes";
 import request from "supertest";
+import { describe, expect, it } from "vitest";
 
 import type { ServiceResponse } from "@/common/models/serviceResponse";
 import type { User } from "@/modules/user/userModel";
 import { users } from "@/modules/user/userRepository";
 import { app } from "@/server";
-import { describe, expect, it } from "vitest";
 
 describe("User API Endpoints", () => {
   describe("GET /users", () => {
