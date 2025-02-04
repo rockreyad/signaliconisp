@@ -15,14 +15,14 @@ const nextConfig: NextConfig = {
       fullUrl: true,
     },
   },
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: `${process.env.NEXT_PUBLIC_EXTERNAL_SERVER_URL}/api/:path*`,
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: "/api/:path*",
+  //       destination: `${process.env.NEXT_PUBLIC_EXTERNAL_SERVER_URL}/api/:path*`,
+  //     },
+  //   ];
+  // },
 };
 
 export default nextConfig;
