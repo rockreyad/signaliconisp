@@ -1,7 +1,8 @@
+import type { ApiResponse } from "@repo/validation/api";
+
 import { setSessionTokenCookie } from "@/lib/auth";
 import { getClientSessionToken, getSessionToken } from "@/lib/auth";
 import { env } from "@/lib/env";
-import type { ApiResponse } from "@repo/validation/api";
 
 export interface FetchOptions extends RequestInit {
   body: any;

@@ -1,8 +1,9 @@
 "use client";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import PlusIcon from "@/components/icons/PlusIcon";
+
 import MinusIcon from "@/components/icons/MinusIcon";
-import { motion, AnimatePresence } from "framer-motion";
+import PlusIcon from "@/components/icons/PlusIcon";
 
 const items = [
   {

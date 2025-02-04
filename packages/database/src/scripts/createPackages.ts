@@ -56,12 +56,12 @@ async function createPackages() {
       packages.map((pkg) =>
         db.internetPackage.create({
           data: pkg,
-        })
-      )
+        }),
+      ),
     );
 
     console.info(
-      `Successfully created ${createdPackages.length} internet packages:`
+      `Successfully created ${createdPackages.length} internet packages:`,
     );
 
     // Log created packages in a table format
@@ -71,7 +71,7 @@ async function createPackages() {
         Speed: `${pkg.speed} Mbps`,
         Price: `${pkg.price} BDT`,
         Duration: `${pkg.duration} days`,
-      }))
+      })),
     );
 
     return createdPackages;

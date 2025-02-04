@@ -1,6 +1,8 @@
-import { ServiceResponse } from "@/common/models/serviceResponse";
 import { StatusCodes } from "http-status-codes";
-import { CreatePayment, GetPayment, GetPaymentById } from "./paymentModel";
+
+import { ServiceResponse } from "@/common/models/serviceResponse";
+
+import type { CreatePayment, GetPayment, GetPaymentById } from "./paymentModel";
 import { paymentRepository } from "./paymentRepository";
 
 const createPayment = async (data: CreatePayment) => {

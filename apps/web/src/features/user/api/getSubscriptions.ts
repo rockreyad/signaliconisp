@@ -1,6 +1,7 @@
+import type { Subscription } from "@repo/validation/subscription";
+
 import { apiRoutes } from "@/config";
 import { api } from "@/lib/api";
-import type { Subscription } from "@repo/validation/subscription";
 
 export const getSubscriptions = async ({
   userId,

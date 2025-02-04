@@ -1,16 +1,17 @@
-import { createApiResponse } from "@/api-docs/openAPIResponseBuilders";
 import { OpenAPIRegistry } from "@asteasolutions/zod-to-openapi";
+import express, { type Router } from "express";
+import z from "zod";
+
+import { createApiResponse } from "@/api-docs/openAPIResponseBuilders";
+import { grantToken } from "@/common/lib/bkash/grantToken";
+import { validateRequest } from "@/common/lib/httpHandlers";
+
+import { paymentController } from "./paymentController";
 import {
   GetPaymentByIdSchema,
   GetPaymentSchema,
   PaymentSchema,
 } from "./paymentModel";
-import express, { type Router } from "express";
-import { CreatePaymentSchema } from "./paymentModel";
-import { validateRequest } from "@/common/lib/httpHandlers";
-import { paymentController } from "./paymentController";
-import { grantToken } from "@/common/lib/bkash/grantToken";
-import z from "zod";
 
 export const paymentRouter: Router = express.Router();
 export const paymentRegistry = new OpenAPIRegistry();

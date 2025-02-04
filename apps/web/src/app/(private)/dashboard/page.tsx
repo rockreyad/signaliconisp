@@ -1,5 +1,6 @@
+import type { Metadata } from "next";
+
 import { UserInfo } from "@/features/user/components/UserInfo";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Dashboard",

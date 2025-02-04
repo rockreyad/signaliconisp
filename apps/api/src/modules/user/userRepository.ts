@@ -1,5 +1,6 @@
 import { db } from "@repo/database";
-import { GetUser } from "./userModel";
+
+import type { GetUser } from "./userModel";
 
 const getUserById = async (data: GetUser) => {
   const user = await db.user.findFirst({

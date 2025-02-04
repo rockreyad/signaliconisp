@@ -70,6 +70,6 @@ module.exports = {
     "no-console": ["warn", { allow: ["warn", "error", "info"] }],
     "no-unused-vars": "off", // TypeScript handles this
     "prefer-const": "warn",
-    "no-duplicate-imports": "warn",
+    "no-duplicate-imports": "off",
   },
 };

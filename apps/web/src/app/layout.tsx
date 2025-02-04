@@ -1,8 +1,10 @@
 import "@/assets/styles/satoshi.css";
 import "@/assets/styles/globals.css";
+
+import type { Metadata } from "next";
+
 import { QueryProvider } from "@/components/providers/QueryProviders";
 import ThemeProvider from "@/components/providers/ThemeProvider";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Create Next App",

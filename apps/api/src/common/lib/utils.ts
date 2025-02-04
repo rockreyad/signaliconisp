@@ -1,7 +1,8 @@
+import dayjs from "dayjs";
+import { StatusCodes } from "http-status-codes";
+
 import { logger } from "@/common/lib/logger";
 import { ServiceResponse } from "@/common/models/serviceResponse";
-import { StatusCodes } from "http-status-codes";
-import dayjs from "dayjs";
 
 export const handleServiceError = (error: Error, operation: string) => {
   const message = `Error during ${operation.toLowerCase()}: ${error.message}`;

@@ -1,7 +1,8 @@
-import { postSubscription } from "@/features/subscription/api/postSubscription";
 import clsx from "clsx";
-import React from "react";
 import { redirect, RedirectType } from "next/navigation";
+import React from "react";
+
+import { postSubscription } from "@/features/subscription/api/postSubscription";
 
 export const Package = ({
   pkg,

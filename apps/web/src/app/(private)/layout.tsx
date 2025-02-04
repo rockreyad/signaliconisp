@@ -1,9 +1,10 @@
 "use client";
 
-import PrivatePageWrapper from "@/components/global/PrivatePageWrapper";
-import Loader from "@/components/Loader";
 import { SessionProvider } from "next-auth/react";
 import { useEffect, useState } from "react";
+
+import PrivatePageWrapper from "@/components/global/PrivatePageWrapper";
+import Loader from "@/components/Loader";
 
 export default function PrivateLayout({
   children,

@@ -1,12 +1,14 @@
-import { ServiceResponse } from "@/common/models/serviceResponse";
 import { StatusCodes } from "http-status-codes";
-import {
+
+import { handleServiceError } from "@/common/lib/utils";
+import { ServiceResponse } from "@/common/models/serviceResponse";
+
+import type {
   CreateSubscription,
   GetSubscription,
   UpdateSubscription,
 } from "./subscriptionModel";
 import { subscriptionRepository } from "./subscriptionRepository";
-import { handleServiceError } from "@/common/lib/utils";
 
 const getSubscription = async (data: GetSubscription) => {
   const subscription = await subscriptionRepository.getSubscription(data);

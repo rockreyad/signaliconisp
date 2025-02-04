@@ -1,9 +1,9 @@
-import { type Request, type Response, type NextFunction } from "express";
+import { type NextFunction, type Request, type Response } from "express";
 
-import { bkashConfig } from "./config";
-import { tokenHeaders } from "./tokenHeaders";
 import { logger } from "../logger";
+import { bkashConfig } from "./config";
 import { setGlobalIdToken } from "./globalData";
+import { tokenHeaders } from "./tokenHeaders";
 
 interface TokenResponse {
   id_token?: string;
@@ -35,7 +35,6 @@ export const grantToken = async (
     setGlobalIdToken(tokenResult.id_token);
     logger.info("Token granted successfully");
     next();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     logger.error("Token grant failed");
     next(e);

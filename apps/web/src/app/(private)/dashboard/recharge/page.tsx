@@ -1,8 +1,9 @@
+import type { Metadata } from "next";
+
 import { auth } from "@/auth";
 import { getAllPackages } from "@/features/recharge/api/getAllPackages";
 import { Package } from "@/features/recharge/components/Package";
 import { getSubscriptions } from "@/features/user/api/getSubscriptions";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Recharge",

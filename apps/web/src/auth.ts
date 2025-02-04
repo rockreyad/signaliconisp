@@ -1,7 +1,8 @@
-import NextAuth, { CredentialsSignin, NextAuthResult } from "next-auth";
-import { authConfig } from "./config/auth.config";
+import type { NextAuthResult, Session, User } from "next-auth";
+import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { Session, User } from "next-auth";
+
+import { authConfig } from "./config/auth.config";
 import { getUser } from "./features/user/api/getUser";
 
 class CustomError extends CredentialsSignin {

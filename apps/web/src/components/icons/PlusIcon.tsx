@@ -1,5 +1,5 @@
-import type { IconProps } from "@/types/global";
 import { cn } from "@/lib/utils";
+import type { IconProps } from "@/types/global";
 
 const PlusIcon = ({ className, ...props }: IconProps) => {
   return (

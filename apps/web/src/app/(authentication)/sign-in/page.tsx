@@ -1,8 +1,7 @@
-import { authRoutes } from "@/config";
-import { SigninWithPassword } from "@/features/auth/components/SigninWithPassword";
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense } from "react";
+
+import { SigninWithPassword } from "@/features/auth/components/SigninWithPassword";
 
 export default function SignIn() {
   return (

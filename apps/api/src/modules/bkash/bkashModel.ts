@@ -65,10 +65,10 @@ const BkashResponseCode = {
 };
 
 export {
-  BkashTransactionStatus,
   BkashCreatePaymentRequest,
   BkashCreatePaymentResponse,
   BkashExecutePaymentRequest,
   BkashExecutePaymentResponse,
   BkashResponseCode,
+  BkashTransactionStatus,
 };

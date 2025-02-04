@@ -1,7 +1,7 @@
+import type { UserProfile } from "@repo/validation/user";
+
 import { apiRoutes } from "@/config";
 import { api } from "@/lib/api";
-import { env } from "@/lib/env";
-import type { UserProfile } from "@repo/validation/user";
 
 export const getUserProfile = async ({
   userId,

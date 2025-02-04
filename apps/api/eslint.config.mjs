@@ -10,7 +10,15 @@ export default [
       ".next",
       "*.config.js",
       "*.config.mjs",
+      "tsup.config.ts",
+      "vite.config.ts",
     ],
   },
   express,
+  {
+    rules: {
+      "no-console": "off",
+      "no-duplicate-imports": "off",
+    },
+  },
 ];

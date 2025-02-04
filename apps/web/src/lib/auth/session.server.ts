@@ -1,5 +1,6 @@
-import { env } from "@/lib/env";
 import { cookies } from "next/headers";
+
+import { env } from "@/lib/env";
 
 export const getSessionToken = async () => {
   return (await cookies()).get(env.SESSION_COOKIE_NAME)?.value;

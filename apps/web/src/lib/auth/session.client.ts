@@ -1,4 +1,5 @@
 import { getCookie } from "cookies-next";
+
 import { env } from "../env";
 
 export const getClientSessionToken = () => {

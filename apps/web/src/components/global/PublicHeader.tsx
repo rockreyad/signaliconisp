@@ -1,9 +1,11 @@
-import { authRoutes, protectedRoutes } from "@/config";
 import Link from "next/link";
-import { Suspense } from "react";
-import MenuIcon from "../icons/MenuIcon";
 import { SessionProvider } from "next-auth/react";
+import { Suspense } from "react";
+
 import { auth } from "@/auth";
+import { authRoutes, protectedRoutes } from "@/config";
+
+import MenuIcon from "../icons/MenuIcon";
 
 const PublicHeader = () => {
   return (

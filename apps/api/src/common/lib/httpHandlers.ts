@@ -6,7 +6,7 @@ import { ServiceResponse } from "@/common/models/serviceResponse";
 
 export const handleServiceResponse = (
   serviceResponse: ServiceResponse<any>,
-  response: Response
+  response: Response,
 ): void => {
   response.status(serviceResponse.statusCode).send(serviceResponse);
 };
@@ -18,12 +18,13 @@ export const validateRequest =
       next();
     } catch (err) {
       const errorMessage = `Invalid input: ${(err as ZodError).errors.map((e) => e.message).join(", ")}`;
+
       console.log("validateRequest errorMessage", errorMessage);
       const statusCode = StatusCodes.BAD_REQUEST;
       const serviceResponse = ServiceResponse.failure(
         errorMessage,
         null,
-        statusCode
+        statusCode,
       );
       return handleServiceResponse(serviceResponse, res);
     }

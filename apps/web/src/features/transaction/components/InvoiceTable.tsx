@@ -1,4 +1,4 @@
-import { Payment } from "@repo/validation/payment";
+import type { Payment } from "@repo/validation/payment";
 import dayjs from "dayjs";
 
 interface InvoiceTableProps {

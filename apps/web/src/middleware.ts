@@ -1,7 +1,8 @@
-import { afterLoginUrl, authRoutes, protectedRoutes } from "@/config";
-import { env } from "@/lib/env";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+
+import { afterLoginUrl, authRoutes, protectedRoutes } from "@/config";
+import { env } from "@/lib/env";
 
 const redirectToSignIn = (req: NextRequest) => {
   return NextResponse.redirect(new URL(authRoutes.signIn, req.url));
@@ -26,7 +27,6 @@ export async function middleware(req: NextRequest) {
   }
 
   if (!isProtectedRoute) {
-    console.log("not protected or auth route");
     return NextResponse.next();
   }
 

@@ -1,6 +1,7 @@
+import type { GetPayments, Payment } from "@repo/validation/payment";
+
 import { apiRoutes } from "@/config";
 import { api } from "@/lib/api";
-import { GetPayments, Payment } from "@repo/validation/payment";
 
 export const getPayments = async (
   data: GetPayments,
