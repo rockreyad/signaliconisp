@@ -40,6 +40,18 @@ const getPayments = async (data: GetPayment) => {
   }
   const payments = await db.payment.findMany({
     where,
+    include: {
+      subscription: {
+        select: {
+          package: {
+            select: {
+              name: true,
+              speed: true,
+            },
+          },
+        },
+      },
+    },
   });
   return payments;
 };

@@ -1,22 +1,26 @@
 services:
-  db:
-    extends:
-      file: ./packages/database/docker-compose.yml
-      service: db
-    env_file:
-      - ./packages/database/.env
+  postgres:
+    image: postgres:latest
+    container_name: signaliconisp-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: signalicon # This creates the database named 'signalicon'
+    ports:
+      - "5432:5432"
     networks:
-      - app_network
+      - signalicon-network
 
-  # mailhog:
-  #   extends:
-  #     file: ./apps/api/docker-compose.yml
-  #     service: mailhog
-  #   env_file:
-  #     - ./apps/api/.env
-  #   networks:
-  #     - app_network
+  redis:
+    image: redis:latest
+    container_name: signaliconisp-redis
+    environment:
+      REDIS_PASSWORD: redis # Set the password for Redis
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--requirepass", "redis"] # Require password for Redis
+    networks:
+      - signalicon-network
 
 networks:
-  app_network:
-    driver: bridge
+  signalicon-network:

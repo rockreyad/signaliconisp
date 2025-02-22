@@ -1,3 +1,7 @@
+import {
+  DEFAULT_BANDWIDTH_UNIT,
+  DEFAULT_CURRENCY_SYMBOL,
+} from "@/lib/constant";
 import type { Payment } from "@repo/validation/payment";
 import dayjs from "dayjs";
 
@@ -11,18 +15,24 @@ export const InvoiceTable = ({ payments }: InvoiceTableProps) => {
         <table className="w-full table-auto">
           <thead>
             <tr className="bg-[#F7F9FC] text-left dark:bg-dark-2">
-              <th className="min-w-[220px] px-4 py-4 font-medium text-dark dark:text-white xl:pl-7.5">
-                Package
+              <th className="w-[200px] px-4 py-4 font-medium text-dark dark:text-white xl:pl-7.5">
+                Invoice ID
+              </th>
+              <th className="min-w-[200px] px-4 py-4 font-medium text-dark dark:text-white xl:pl-7.5">
+                Package Details
               </th>
               <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
-                Invoice date
+                Invoice Date
               </th>
-              <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white">
+              <th className="min-w-[100px] px-4 py-4 font-medium text-dark dark:text-white">
                 Status
               </th>
-              <th className="px-4 py-4 text-right font-medium text-dark dark:text-white xl:pr-7.5">
-                Actions
+              <th className="min-w-[100px] px-4 py-4 font-medium text-dark dark:text-white">
+                Amount
               </th>
+              {/* <th className="px-4 py-4 text-right font-medium text-dark dark:text-white xl:pr-7.5">
+                Actions
+              </th> */}
             </tr>
           </thead>
           <tbody>
@@ -31,11 +41,19 @@ export const InvoiceTable = ({ payments }: InvoiceTableProps) => {
                 <td
                   className={`border-[#eee] px-4 py-4 dark:border-dark-3 xl:pl-7.5 ${index === payments.length - 1 ? "border-b-0" : "border-b"}`}
                 >
+                  <p className="text-dark dark:text-white font-bold">
+                    {payment.merchantInvoiceNumber}
+                  </p>
+                </td>
+                <td
+                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 xl:pl-7.5 ${index === payments.length - 1 ? "border-b-0" : "border-b"}`}
+                >
                   <h5 className="text-dark dark:text-white font-bold">
-                    {payment.meta?.payerReference}
+                    {payment.subscription.package.name}
                   </h5>
                   <p className="mt-[3px] text-body-sm font-medium">
-                    ${payment.amount}
+                    {payment.subscription.package.speed}{" "}
+                    {DEFAULT_BANDWIDTH_UNIT}
                   </p>
                 </td>
                 <td
@@ -61,12 +79,21 @@ export const InvoiceTable = ({ payments }: InvoiceTableProps) => {
                   </p>
                 </td>
                 <td
+                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === payments.length - 1 ? "border-b-0" : "border-b"}`}
+                >
+                  <p className="text-dark dark:text-white">
+                    {DEFAULT_CURRENCY_SYMBOL}
+                    {payment.amount}
+                  </p>
+                </td>
+                {/* TODO: Add actions */}
+                {/* <td
                   className={`border-[#eee] px-4 py-4 dark:border-dark-3 xl:pr-7.5 ${index === payments.length - 1 ? "border-b-0" : "border-b"}`}
                 >
                   <div className="flex items-center justify-end space-x-3.5">
                     actions
                   </div>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>

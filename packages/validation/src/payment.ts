@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { packageSchema } from "./package";
 
 export const PaymentSchema = z.object({
   id: z.string(),
@@ -15,6 +16,12 @@ export const PaymentSchema = z.object({
   meta: z.record(z.string(), z.any()).optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
+  subscription: z.object({
+    package: packageSchema.pick({
+      name: true,
+      speed: true,
+    }),
+  }),
 });
 
 export type Payment = z.infer<typeof PaymentSchema>;
