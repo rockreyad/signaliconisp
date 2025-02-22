@@ -8,7 +8,7 @@ async function main() {
   const packages = await db.internetPackage.findMany();
   if (packages.length === 0) {
     console.error(
-      "❌ No packages found! Please run 'pnpm create:packages' first",
+      "❌ No packages found! Please run 'pnpm db:create:packages' first",
     );
     process.exit(1);
   }

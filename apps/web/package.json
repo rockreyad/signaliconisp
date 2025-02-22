@@ -13,6 +13,7 @@
   "dependencies": {
     "@conform-to/react": "^1.2.2",
     "@conform-to/zod": "^1.2.2",
+    "@phosphor-icons/react": "^2.1.7",
     "@t3-oss/env-nextjs": "^0.11.1",
     "@tanstack/react-query": "^5.62.14",
     "class-variance-authority": "^0.7.1",

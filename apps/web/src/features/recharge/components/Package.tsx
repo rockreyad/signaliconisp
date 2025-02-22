@@ -18,10 +18,10 @@ export const Package = ({
   return (
     <div
       key={pkg.id}
-      className="overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl"
+      className="overflow-hidden rounded-lg bg-white dark:bg-gray-dark shadow-lg transition-shadow duration-300 hover:shadow-xl"
     >
       {/* Package Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
+      <div className="p-6 text-gray-800 dark:text-gray-200 border-b border-stroke dark:border-dark-3">
         <h3 className="text-2xl font-bold">{pkg.name}</h3>
         <p className="mt-2 text-4xl font-bold">
           ৳{pkg.price}
@@ -45,13 +45,15 @@ export const Package = ({
               d="M13 10V3L4 14h7v7l9-11h-7z"
             />
           </svg>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-400">
             <span className="font-semibold">{pkg.speed} Mbps</span> Speed
           </p>
         </div>
 
-        <p className="text-gray-600">{pkg.description}</p>
-        <p className="text-gray-600">Duration: {pkg.duration} days</p>
+        <p className="text-gray-600 dark:text-gray-400">{pkg.description}</p>
+        <p className="text-gray-600 dark:text-gray-400">
+          Duration: {pkg.duration} days
+        </p>
         <button
           className={clsx(
             "w-full rounded-md py-3 text-white transition-colors duration-300",

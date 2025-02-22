@@ -6,6 +6,7 @@ import { createApiResponse } from "@/api-docs/openAPIResponseBuilders";
 import { grantToken } from "@/common/lib/bkash/grantToken";
 import { validateRequest } from "@/common/lib/httpHandlers";
 
+import { PackageSchema } from "../package/packageModel";
 import { paymentController } from "./paymentController";
 import {
   GetPaymentByIdSchema,
@@ -49,7 +50,19 @@ paymentRegistry.registerPath({
   request: {
     query: GetPaymentSchema.shape.query,
   },
-  responses: createApiResponse(z.array(PaymentSchema), "Success"),
+  responses: createApiResponse(
+    z.array(
+      PaymentSchema.extend({
+        subscription: z.object({
+          package: PackageSchema.pick({
+            name: true,
+            speed: true,
+          }),
+        }),
+      }),
+    ),
+    "Success",
+  ),
 });
 
 paymentRouter.get("/", paymentController.getPayments);
