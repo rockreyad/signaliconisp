@@ -21,7 +21,7 @@ export function PricingTab(props: PricingTabProps) {
         {props.popular && (
           <div className="absolute right-0 top-0 -mt-4 mr-6">
             <div className="inline-flex items-center rounded-full bg-emerald-500 px-3 py-1.5 text-xs font-semibold text-white shadow-sm shadow-slate-950/5">
-              পুপুলার প্ল্যান
+              MOST POPULAR
             </div>
           </div>
         )}
@@ -43,7 +43,7 @@ export function PricingTab(props: PricingTabProps) {
           </div>
           <a
             className="inline-flex w-full justify-center whitespace-nowrap rounded-lg bg-[#5D2CA8] px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 transition-colors duration-150 hover:bg-[#5D2CA2] focus-visible:outline-none focus-visible:ring focus-visible:ring-slate-600"
-            href="#0"
+            href="/dashboard/recharge"
           >
             কিনুন
           </a>
@@ -72,14 +72,15 @@ export function PricingTab(props: PricingTabProps) {
 
 // TODO: FETCH FROM SERVER
 
-export default function PricingTable() {
-  const [isAnnual, setIsAnnual] = useState<boolean>(true);
+export default function PricingTable(props: { packages: PricingTabProps[] }) {
+  // const [isAnnual, setIsAnnual] = useState<boolean>(true);
 
+  if (!props.packages) return null;
   return (
     <div>
       {/* Pricing toggle */}
       <div className="m-auto mb-8 flex max-w-[14rem] justify-center lg:mb-16">
-        <div className="relative flex w-full rounded-full bg-black p-1">
+        {/* <div className="relative flex w-full rounded-full bg-black p-1">
           <span
             className="pointer-events-none absolute inset-0 m-1"
             aria-hidden="true"
@@ -94,11 +95,11 @@ export default function PricingTable() {
             aria-pressed={isAnnual}
           >
             বছর{" "}
-            {/* <span
+            <span
               className={`${isAnnual ? "text-indigo-200" : "text-slate-400 dark:text-slate-500"}`}
             >
               -20%
-            </span> */}
+            </span>
           </button>
           <button
             className={`relative h-8 flex-1 rounded-full text-sm font-medium transition-colors duration-150 ease-in-out focus-visible:outline-none focus-visible:ring focus-visible:ring-slate-600 ${isAnnual ? "text-white/70" : " text-white"}`}
@@ -107,52 +108,14 @@ export default function PricingTable() {
           >
             মাস
           </button>
-        </div>
+        </div> */}
       </div>
 
       <div className="mx-auto grid max-w-sm items-start gap-6 lg:max-w-none lg:grid-cols-3">
         {/* Pricing tab 1 */}
-        <PricingTab
-          yearly={isAnnual}
-          planName="৫ এমবিপিএস"
-          price={{ yearly: "৬০০০", monthly: "৫০০" }}
-          planDescription="অর্থপ্রদান নগদ, ব্যাঙ্ক ট্রান্সফার বা কোম্পানি দ্বারা সমর্থিত যেকোনো ডিজিটাল পেমেন্ট প্ল্যাটফর্মের মাধ্যমে করা যেতে পারে।"
-          features={[
-            "ফ্রি কানেকশন",
-            "24/7 কাটমার সাপোর্ট ",
-            "50 mbps ইউটিউব ",
-            "50 mbps ফেসবুক ",
-          ]}
-        />
-
-        {/* Pricing tab 2 */}
-        <PricingTab
-          yearly={isAnnual}
-          popular={true}
-          planName="৮ এমবিপিএস"
-          price={{ yearly: "৬৩০০", monthly: "৫২৫" }}
-          planDescription="অর্থপ্রদান নগদ, ব্যাঙ্ক ট্রান্সফার বা কোম্পানি দ্বারা সমর্থিত যেকোনো ডিজিটাল পেমেন্ট প্ল্যাটফর্মের মাধ্যমে করা যেতে পারে।"
-          features={[
-            "ফ্রি কানেকশন",
-            "24/7 কাটমার সাপোর্ট ",
-            "100 mbps ইউটিউব ",
-            "100 mbps ফেসবুক ",
-          ]}
-        />
-
-        {/* Pricing tab 3 */}
-        <PricingTab
-          yearly={isAnnual}
-          planName="১০ এমবিপিএস"
-          price={{ yearly: "৭২০০", monthly: "৬০০" }}
-          planDescription="অর্থপ্রদান নগদ, ব্যাঙ্ক ট্রান্সফার বা কোম্পানি দ্বারা সমর্থিত যেকোনো ডিজিটাল পেমেন্ট প্ল্যাটফর্মের মাধ্যমে করা যেতে পারে।"
-          features={[
-            "ফ্রি কানেকশন",
-            "24/7 কাটমার সাপোর্ট ",
-            "100 mbps ইউটিউব ",
-            "100 mbps ফেসবুক ",
-          ]}
-        />
+        {props.packages.map((pkg) => (
+          <PricingTab key={pkg.planName} {...pkg} />
+        ))}
       </div>
     </div>
   );
