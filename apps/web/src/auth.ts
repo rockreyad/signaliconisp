@@ -1,4 +1,4 @@
-import type { NextAuthResult, Session, User } from "next-auth";
+import type { NextAuthResult, User } from "next-auth";
 import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
@@ -44,33 +44,6 @@ const nextAuth = NextAuth({
       },
     }),
   ],
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id as string;
-        token.phone = user.phone;
-        token.username = user.username;
-        token.fathersName = user.fathersName;
-        token.createdAt = user.createdAt;
-        token.updatedAt = user.updatedAt;
-      }
-      return token;
-    },
-    async session({ session, token }): Promise<Session> {
-      return {
-        ...session,
-        user: {
-          ...session.user,
-          id: token.id as string,
-          phone: token.phone as string,
-          username: token.username as string,
-          fathersName: token.fathersName as string,
-          createdAt: token.createdAt as string,
-          updatedAt: token.updatedAt as string,
-        } satisfies User,
-      };
-    },
-  },
   secret: process.env.AUTH_SECRET,
   debug: process.env.NODE_ENV === "development",
 });

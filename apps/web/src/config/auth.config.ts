@@ -26,6 +26,7 @@ export const authConfig: NextAuthConfig = {
         token.phone = user.phone;
         token.username = user.username;
         token.fathersName = user.fathersName;
+        token.role = user.role;
         token.createdAt = user.createdAt;
         token.updatedAt = user.updatedAt;
       }
@@ -40,6 +41,7 @@ export const authConfig: NextAuthConfig = {
           phone: token.phone,
           username: token.username,
           fathersName: token.fathersName,
+          role: token.role,
           createdAt: token.createdAt,
           updatedAt: token.updatedAt,
         },

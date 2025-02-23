@@ -20,6 +20,7 @@ model User {
   updatedAt    DateTime @updatedAt
 
   // Relations
+  role          UserRole    @default(CUSTOMER)
   address       Address?
   connection    Connection?
   subscriptions Subscription[]
@@ -132,4 +133,10 @@ enum PaymentMethod {
   BKASH
   CASH
   BANK_TRANSFER
+}
+
+enum UserRole {
+  ADMIN
+  RECHARGE_AGENT
+  CUSTOMER
 }
