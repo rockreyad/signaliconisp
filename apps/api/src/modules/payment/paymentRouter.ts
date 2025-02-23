@@ -42,6 +42,7 @@ paymentRegistry.register("Payment", PaymentSchema);
 //   paymentController.createPayment
 // );
 
+// CUSTOMER PAYMENT ROUTE
 // GET ALL PAYMENTS
 paymentRegistry.registerPath({
   method: "get",
@@ -84,3 +85,5 @@ paymentRouter.get(
 
 paymentRouter.use(grantToken);
 paymentRouter.get("/bkash/callback", paymentController.bkashCallback);
+
+// RECHARGE AGENT PAYMENT ROUTE

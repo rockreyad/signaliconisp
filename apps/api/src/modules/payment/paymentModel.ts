@@ -53,7 +53,12 @@ export const GetPaymentSchema = z.object({
   query: PaymentSchema.pick({
     status: true,
     userId: true,
-  }).partial({ status: true }),
+  })
+    .partial({ status: true })
+    .extend({
+      page: z.string().default("1").optional(),
+      limit: z.string().default("5").optional(),
+    }),
 });
 
 export type GetPayment = z.infer<typeof GetPaymentSchema.shape.query>;

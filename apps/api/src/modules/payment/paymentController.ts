@@ -47,8 +47,13 @@ const bkashCallback: RequestHandler = async (req: Request, res: Response) => {
 };
 
 const getPayments: RequestHandler = async (req: Request, res: Response) => {
-  const { userId, status } = req.query as GetPayment;
-  const serviceResponse = await paymentService.getPayments({ userId, status });
+  const { userId, status, page, limit } = req.query as GetPayment;
+  const serviceResponse = await paymentService.getPayments({
+    userId,
+    status,
+    page,
+    limit,
+  });
   handleServiceResponse(serviceResponse, res);
 };
 

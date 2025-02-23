@@ -106,10 +106,13 @@ model Payment {
   meta                Json?         @db.JsonB // Store additional payment details
   createdAt           DateTime      @default(now())
   updatedAt           DateTime      @updatedAt
+  rechargeAgentId     String?
+  
 
   @@map("payments")
   @@index([userId])
   @@index([subscriptionId])
+  @@index([rechargeAgentId])
 }
 
 enum SubscriptionStatus {
