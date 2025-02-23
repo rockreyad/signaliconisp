@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import { auth } from "@/auth";
 import { authRoutes, protectedRoutes } from "@/config";
 
-import MenuIcon from "../icons/MenuIcon";
+// import MenuIcon from "../icons/MenuIcon";
 
 const PublicHeader = () => {
   return (
@@ -18,10 +18,10 @@ const PublicHeader = () => {
 
               {/* <LogoImage className="relative mt-1 h-12 w-12" /> */}
             </div>
-            <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white border-opacity-30 sm:hidden">
+            {/* <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white border-opacity-30 sm:hidden">
               <MenuIcon className="text-white" />
-            </div>
-            <nav className="hidden items-center gap-6 text-white sm:flex">
+            </div> */}
+            <nav className="items-center gap-6 text-white flex">
               {/* <a
                 href="#"
                 className="text-white text-opacity-60 transition hover:text-opacity-100"

@@ -23,7 +23,12 @@ export const authRoutes = {
   resetPassword: "/reset-password",
 };
 
-export const protectedRoutes = ["/dashboard", "/dashboard/settings"];
+export const protectedRoutes = [
+  "/dashboard",
+  "/dashboard/transactions",
+  "/dashboard/recharge",
+  "/dashboard/settings",
+];
 
 export const apiRoutes = {
   auth: {
