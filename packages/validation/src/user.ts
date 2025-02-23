@@ -60,6 +60,7 @@ const userConnectionSchema = z.object({
 
 export const UserProfileSchema = userSchema
   .pick({
+    id: true,
     name: true,
     email: true,
     phone: true,

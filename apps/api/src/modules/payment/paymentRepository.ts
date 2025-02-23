@@ -38,6 +38,10 @@ const getPayments = async (data: GetPayment) => {
   if (data.status) {
     where.status = data.status;
   }
+
+  const limit = data.limit ? parseInt(data.limit) : 5;
+  const page = data.page ? parseInt(data.page) : 1;
+
   const payments = await db.payment.findMany({
     where,
     include: {
@@ -52,6 +56,11 @@ const getPayments = async (data: GetPayment) => {
         },
       },
     },
+    orderBy: {
+      createdAt: "desc",
+    },
+    take: limit,
+    skip: (page - 1) * limit,
   });
   return payments;
 };
