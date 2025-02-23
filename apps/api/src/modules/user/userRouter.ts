@@ -1,16 +1,16 @@
 import { OpenAPIRegistry } from "@asteasolutions/zod-to-openapi";
-import { UserProfileSchema } from "@repo/validation/user";
+import { UserProfileSchema, userSchema } from "@repo/validation/user";
 import express, { type Router } from "express";
 
 import { createApiResponse } from "@/api-docs/openAPIResponseBuilders";
 import { validateRequest } from "@/common/lib/httpHandlers";
 import { userController } from "@/modules/user/userController";
-import { GetUserSchema, UserSchema } from "@/modules/user/userModel";
+import { GetUserSchema } from "@/modules/user/userModel";
 
 export const userRegistry = new OpenAPIRegistry();
 export const userRouter: Router = express.Router();
 
-userRegistry.register("User", UserSchema);
+userRegistry.register("User", userSchema);
 
 // userRegistry.registerPath({
 //   method: "get",
@@ -44,7 +44,7 @@ userRegistry.registerPath({
   path: "/user/{id}",
   tags: ["User"],
   request: { params: GetUserSchema.shape.params },
-  responses: createApiResponse(UserSchema, "Success"),
+  responses: createApiResponse(userSchema, "Success"),
 });
 
 // TODO: Add validation
@@ -61,5 +61,5 @@ userRegistry.registerPath({
 userRouter.get(
   "/profile/:id",
   validateRequest(GetUserSchema),
-  userController.getUserProfile,
+  userController.getUserProfile
 );

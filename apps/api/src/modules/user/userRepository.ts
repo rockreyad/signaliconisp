@@ -19,6 +19,7 @@ const getUserById = async (data: GetUser) => {
       name: true,
       username: true,
       fathersName: true,
+      role: true,
       createdAt: true,
       _count: {
         select: {

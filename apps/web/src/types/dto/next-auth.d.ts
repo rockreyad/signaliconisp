@@ -1,4 +1,5 @@
 import type { DefaultSession } from "next-auth";
+import type { UserRole } from "@repo/validation/user";
 
 declare module "next-auth" {
   interface Session extends DefaultSession {
@@ -9,6 +10,7 @@ declare module "next-auth" {
       name: string;
       username: string;
       fathersName: string;
+      role: UserRole;
       createdAt: string;
       updatedAt: string;
     } & DefaultSession["user"];
@@ -21,6 +23,7 @@ declare module "next-auth" {
     name: string;
     username: string;
     fathersName: string;
+    role: UserRole;
     createdAt: string;
     updatedAt: string;
   }
@@ -32,6 +35,7 @@ declare module "next-auth/jwt" {
     phone: string;
     username: string;
     fathersName: string;
+    role: UserRole;
     createdAt: string;
     updatedAt: string;
   }

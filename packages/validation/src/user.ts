@@ -28,6 +28,10 @@ export type ChangeUserPasswordForm = z.infer<
   typeof changeUserPasswordFormSchema
 >;
 
+export const userRoleSchema = z.enum(["ADMIN", "RECHARGE_AGENT", "CUSTOMER"]);
+
+export type UserRole = z.infer<typeof userRoleSchema>;
+
 export const userSchema = z.object({
   id: z.string(),
   email: z.string(),
@@ -35,6 +39,7 @@ export const userSchema = z.object({
   name: z.string(),
   username: z.string(),
   fathersName: z.string(),
+  role: userRoleSchema,
   createdAt: z.string(),
   updatedAt: z.string(),
 });
@@ -79,7 +84,7 @@ export const UserProfileSchema = userSchema
             amount: true,
           }),
         })
-        .optional(),
+        .optional()
     ),
   });
 
