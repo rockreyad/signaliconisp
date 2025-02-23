@@ -61,5 +61,5 @@ userRegistry.registerPath({
 userRouter.get(
   "/profile/:id",
   validateRequest(GetUserSchema),
-  userController.getUserProfile
+  userController.getUserProfile,
 );

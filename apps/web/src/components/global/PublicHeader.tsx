@@ -43,7 +43,9 @@ const PublicHeader = () => {
 
 const DashboardButton = async () => {
   const session = await auth();
-  const route = session?.user?.id ? protectedRoutes[0] : authRoutes.signIn;
+  const route = session?.user?.id
+    ? protectedRoutes.CUSTOMER[0]
+    : authRoutes.signIn;
   const label = session?.user?.id ? "Dashboard" : "Sign In";
   return (
     <Link href={route} className="rounded-lg bg-white px-4 py-2 text-black">

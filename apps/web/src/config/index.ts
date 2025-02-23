@@ -23,12 +23,38 @@ export const authRoutes = {
   resetPassword: "/reset-password",
 };
 
-export const protectedRoutes = [
-  "/dashboard",
-  "/dashboard/transactions",
-  "/dashboard/recharge",
-  "/dashboard/settings",
-];
+export const protectedRoutes = {
+  CUSTOMER: [
+    "/dashboard",
+    "/dashboard/transactions",
+    "/dashboard/recharge",
+    "/dashboard/settings",
+  ],
+  RECHARGE_AGENT: [
+    "/dashboard",
+    "/dashboard/customers",
+    "/dashboard/customers/add",
+    "/dashboard/recharge",
+    "/dashboard/transactions",
+    "/dashboard/settings",
+  ],
+  ADMIN: [
+    "/dashboard",
+    "/dashboard/customers",
+    "/dashboard/customers/add",
+    "/dashboard/agents",
+    "/dashboard/agents/add",
+    "/dashboard/packages",
+    "/dashboard/packages/add",
+    "/dashboard/transactions",
+    "/dashboard/recharge",
+    "/dashboard/analytics/revenue",
+    "/dashboard/analytics/packages",
+    "/dashboard/analytics/users",
+    "/dashboard/analytics/agents",
+    "/dashboard/settings",
+  ],
+};
 
 export const apiRoutes = {
   auth: {
