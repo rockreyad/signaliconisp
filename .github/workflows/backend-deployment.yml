@@ -60,14 +60,19 @@ jobs:
           echo "BKASH_CALLBACK_URL=${{ secrets.BKASH_CALLBACK_URL }}" >> apps/api/.env
           echo "PAYMENT_SUCCESS_URL=${{ secrets.PAYMENT_SUCCESS_URL }}" >> apps/api/.env
           echo "PAYMENT_FAIL_URL=${{ secrets.PAYMENT_FAIL_URL }}" >> apps/api/.env
-      - name: Database Migration
-        run: pnpm run db:migrate:deploy
-      - name: Api Build
-        run: pnpm --filter api build
+      - name: Set package/database env variables
+        run: |
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> packages/database/.env
+          echo "DIRECT_URL=${{ secrets.DIRECT_URL }}" >> packages/database/.env
       - name: Source .env file
         run: |
           set -a
           source apps/api/.env
+          source packages/database/.env
           set +a
+      - name: Database Migration
+        run: pnpm run db:migrate:deploy
+      - name: Api Build
+        run: pnpm --filter api build
       - name: Run api with pm2
         run: cd apps/api && pm2 restart dist/index.js --name signalicon-api
