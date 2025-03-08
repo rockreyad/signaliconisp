@@ -15,6 +15,7 @@ on:
 jobs:
   build:
     runs-on: self-hosted
+    environment: production
 
     strategy:
       matrix:
