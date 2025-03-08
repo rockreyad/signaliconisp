@@ -69,5 +69,7 @@ jobs:
       - name: Api Build
         run: pnpm --filter api build
 
-      - name: Run api with pm2
-        run: cd apps/api && pm2 restart pnpm --name "signalicon-api" -- start
+      - name: Locate and use PM2
+        run: |
+          PM2_PATH=$(which pm2)
+          cd apps/api && $PM2_PATH restart pnpm --name "signalicon-api" -- start
