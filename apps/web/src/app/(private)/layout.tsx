@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import PrivatePageWrapper from "@/components/global/PrivatePageWrapper";
 import Loader from "@/components/Loader";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 export default function PrivateLayout({
   children,
@@ -19,13 +20,13 @@ export default function PrivateLayout({
 
   return (
     <SessionProvider>
-      <SessionProvider>
-        {loading ? (
-          <Loader />
-        ) : (
-          <PrivatePageWrapper>{children}</PrivatePageWrapper>
-        )}
-      </SessionProvider>
+      {loading ? (
+        <Loader />
+      ) : (
+        <PrivatePageWrapper>
+          <NuqsAdapter>{children}</NuqsAdapter>
+        </PrivatePageWrapper>
+      )}
     </SessionProvider>
   );
 }

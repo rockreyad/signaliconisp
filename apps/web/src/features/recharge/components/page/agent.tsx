@@ -9,7 +9,6 @@ import { RechargeForm, RechargeFormProps } from "../RechargeForm";
 interface AgentRechargePageProps extends Pick<RechargeFormProps, "packages"> {}
 const AgentRechargePage = ({ packages }: AgentRechargePageProps) => {
   const [showRechargeForm, setShowRechargeForm] = useState(false);
-  const [key, setKey] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleShowRechargeForm = useCallback(() => {
@@ -24,7 +23,6 @@ const AgentRechargePage = ({ packages }: AgentRechargePageProps) => {
     setIsTransitioning(true);
     setShowRechargeForm(false);
     setTimeout(() => {
-      setKey((prev) => prev + 1);
       setIsTransitioning(false);
     }, 300);
   }, [isTransitioning]);
@@ -74,7 +72,7 @@ const AgentRechargePage = ({ packages }: AgentRechargePageProps) => {
               : "translate-x-0 opacity-100",
           )}
         >
-          <RechargeHistory key={key} onRechargeClick={handleShowRechargeForm} />
+          <RechargeHistory onRechargeClick={handleShowRechargeForm} />
         </div>
       </div>
     </div>

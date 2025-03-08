@@ -12,10 +12,12 @@ export const useGetTransactions = ({
   userId,
   skip,
   limit,
+  enabled,
 }: {
   userId: string;
   skip: number;
   limit: number;
+  enabled?: boolean;
 }) => {
   return useQuery({
     queryKey: [...transactionKeys.transactions, userId],
@@ -33,6 +35,6 @@ export const useGetTransactions = ({
 
       return response.data;
     },
-    enabled: false,
+    enabled: enabled ?? false,
   });
 };

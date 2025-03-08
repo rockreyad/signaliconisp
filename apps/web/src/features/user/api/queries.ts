@@ -8,7 +8,13 @@ export const userKeys = {
   userProfile: ["user-profile"],
 } as const;
 
-export const useGetUserProfile = ({ userId }: { userId: string }) => {
+export const useGetUserProfile = ({
+  userId,
+  enabled,
+}: {
+  userId: string;
+  enabled?: boolean;
+}) => {
   return useQuery({
     queryKey: [...userKeys.userProfile, userId],
     queryFn: async () => {
@@ -22,6 +28,6 @@ export const useGetUserProfile = ({ userId }: { userId: string }) => {
       );
       return response.data;
     },
-    enabled: false, // Don't auto-fetch on mount
+    enabled: enabled ?? false,
   });
 };

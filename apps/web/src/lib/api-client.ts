@@ -44,7 +44,7 @@ const fetcher = async <T>(url: string, options?: ApiRequestOptions) => {
 export const apiClient = {
   get: async <T>(
     endpoint: string,
-    options?: ApiRequestOptions
+    options?: ApiRequestOptions,
   ): Promise<ApiResponse<T>> => {
     // Handle path parameters if they exist
     let finalEndpoint = endpoint;
@@ -70,14 +70,14 @@ export const apiClient = {
       createBaseConfig({
         ...options,
         method: "GET",
-      })
+      }),
     );
 
     return handleResponse<T>(response);
   },
   post: async <T>(
     endpoint: string,
-    options?: ApiRequestOptions
+    options?: ApiRequestOptions,
   ): Promise<ApiResponse<T>> => {
     const response = await fetcher(`${API_BASE_URL}${endpoint}`, {
       ...options,
@@ -88,7 +88,7 @@ export const apiClient = {
   },
   put: async <T>(
     endpoint: string,
-    options?: ApiRequestOptions
+    options?: ApiRequestOptions,
   ): Promise<ApiResponse<T>> => {
     const response = await fetcher(`${API_BASE_URL}${endpoint}`, {
       ...options,
@@ -99,7 +99,7 @@ export const apiClient = {
   },
   patch: async <T>(
     endpoint: string,
-    options?: ApiRequestOptions
+    options?: ApiRequestOptions,
   ): Promise<ApiResponse<T>> => {
     const response = await fetcher(`${API_BASE_URL}${endpoint}`, {
       ...options,
@@ -110,7 +110,7 @@ export const apiClient = {
   },
   delete: async <T>(
     endpoint: string,
-    options?: ApiRequestOptions
+    options?: ApiRequestOptions,
   ): Promise<ApiResponse<T>> => {
     const response = await fetcher(`${API_BASE_URL}${endpoint}`, {
       ...options,
