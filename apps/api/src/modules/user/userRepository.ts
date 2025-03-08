@@ -34,8 +34,16 @@ const getUserById = async (data: GetUser) => {
 
 const getUserProfile = async (data: GetUser) => {
   const user = await db.user.findFirst({
-    where: { id: data.id },
+    where: {
+      OR: [
+        { id: data.id },
+        { email: data.id },
+        { phone: data.id },
+        { username: data.id },
+      ],
+    },
     select: {
+      id: true,
       name: true,
       email: true,
       phone: true,

@@ -1,11 +1,21 @@
 import type { ApiResponse } from "@repo/validation/api";
 
-import type { FetchOptions } from "@/lib/api";
 import { env } from "@/lib/env";
+
+interface FetchOptions extends RequestInit {
+  body?: any;
+}
+
+interface ApiRequestOptions extends Omit<FetchOptions, "body" | "headers"> {
+  params?: Record<string, any>;
+  query?: Record<string, any>;
+  body?: any;
+  headers?: Record<string, string>;
+}
 
 const API_BASE_URL = env.NEXT_PUBLIC_EXTERNAL_SERVER_URL;
 
-const createBaseConfig = (options?: Partial<FetchOptions>) => {
+const createBaseConfig = (options?: ApiRequestOptions) => {
   return {
     ...options,
     ...(options?.body ? { body: JSON.stringify(options.body) } : {}),
@@ -27,25 +37,47 @@ async function handleResponse<T>(response: Response): Promise<ApiResponse<T>> {
   return data as ApiResponse<T>;
 }
 
-const fetcher = async <T>(url: string, options?: Partial<FetchOptions>) => {
+const fetcher = async <T>(url: string, options?: ApiRequestOptions) => {
   return await fetch(url, createBaseConfig(options));
 };
 
 export const apiClient = {
-  get: async <T>(endpoint: string): Promise<ApiResponse<T>> => {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    });
+  get: async <T>(
+    endpoint: string,
+    options?: ApiRequestOptions,
+  ): Promise<ApiResponse<T>> => {
+    // Handle path parameters if they exist
+    let finalEndpoint = endpoint;
+    if (options?.params) {
+      Object.entries(options.params).forEach(([key, value]) => {
+        finalEndpoint = finalEndpoint.replace(`:${key}`, String(value));
+      });
+    }
+
+    let url = `${API_BASE_URL}${finalEndpoint}`;
+
+    // Add query parameters if they exist
+    if (options?.query) {
+      const queryParams = new URLSearchParams();
+      Object.entries(options.query).forEach(([key, value]) => {
+        queryParams.append(key, String(value));
+      });
+      url = `${url}?${queryParams.toString()}`;
+    }
+
+    const response = await fetch(
+      url,
+      createBaseConfig({
+        ...options,
+        method: "GET",
+      }),
+    );
 
     return handleResponse<T>(response);
   },
   post: async <T>(
     endpoint: string,
-    options?: Omit<FetchOptions, "method">,
+    options?: ApiRequestOptions,
   ): Promise<ApiResponse<T>> => {
     const response = await fetcher(`${API_BASE_URL}${endpoint}`, {
       ...options,
@@ -56,7 +88,7 @@ export const apiClient = {
   },
   put: async <T>(
     endpoint: string,
-    options?: Omit<FetchOptions, "method">,
+    options?: ApiRequestOptions,
   ): Promise<ApiResponse<T>> => {
     const response = await fetcher(`${API_BASE_URL}${endpoint}`, {
       ...options,
@@ -67,7 +99,7 @@ export const apiClient = {
   },
   patch: async <T>(
     endpoint: string,
-    options?: Omit<FetchOptions, "method">,
+    options?: ApiRequestOptions,
   ): Promise<ApiResponse<T>> => {
     const response = await fetcher(`${API_BASE_URL}${endpoint}`, {
       ...options,
@@ -78,7 +110,7 @@ export const apiClient = {
   },
   delete: async <T>(
     endpoint: string,
-    options?: Omit<FetchOptions, "method">,
+    options?: ApiRequestOptions,
   ): Promise<ApiResponse<T>> => {
     const response = await fetcher(`${API_BASE_URL}${endpoint}`, {
       ...options,
