@@ -69,11 +69,5 @@ jobs:
       - name: Api Build
         run: pnpm --filter api build
 
-      - name: Load Environment Variables
-        run: |
-          set -a
-          source apps/api/.env
-          set +a
-
       - name: Run api with pm2
-        run: cd apps/api && pm2 restart dist/index.js --name signalicon-api
+        run: cd apps/api && pm2 restart pnpm --name "signalicon-api" -- start
