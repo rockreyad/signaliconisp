@@ -75,4 +75,11 @@ jobs:
           pm2 --version
 
       - name: Run api with pm2
-        run: cd apps/api && pm2 restart pnpm --name "signalicon-api" -- start
+        run: |
+          cd apps/api
+          pm2 describe "signalicon-api" > /dev/null
+          if [ $? -eq 0 ]; then
+            pm2 restart "signalicon-api"
+          else
+            pm2 start pnpm --name "signalicon-api" -- start
+          fi
