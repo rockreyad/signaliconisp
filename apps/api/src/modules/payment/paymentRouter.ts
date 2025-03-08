@@ -42,7 +42,6 @@ paymentRegistry.register("Payment", PaymentSchema);
 //   paymentController.createPayment
 // );
 
-// CUSTOMER PAYMENT ROUTE
 // GET ALL PAYMENTS
 paymentRegistry.registerPath({
   method: "get",
@@ -60,9 +59,9 @@ paymentRegistry.registerPath({
             speed: true,
           }),
         }),
-      }),
+      })
     ),
-    "Success",
+    "Success"
   ),
 });
 
@@ -80,7 +79,7 @@ paymentRegistry.registerPath({
 paymentRouter.get(
   "/:id",
   validateRequest(GetPaymentByIdSchema),
-  paymentController.getPaymentById,
+  paymentController.getPaymentById
 );
 
 paymentRouter.use(grantToken);
