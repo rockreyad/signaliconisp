@@ -8,6 +8,7 @@ export const env = createEnv({
 
     SESSION_COOKIE_NAME: z.string().min(1),
     AUTH_SECRET: z.string().min(1),
+    AUTH_TRUST_HOST: z.string().default("false"),
   },
   client: {
     NEXT_PUBLIC_BASE_URL: z.string().url(),

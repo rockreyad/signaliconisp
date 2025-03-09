@@ -4,6 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 
 import { authConfig } from "./config/auth.config";
 import { getUser } from "./features/user/api/getUser";
+import { env } from "./lib/env";
 
 class CustomError extends CredentialsSignin {
   constructor(code: string) {
@@ -44,7 +45,7 @@ const nextAuth = NextAuth({
       },
     }),
   ],
-  secret: process.env.AUTH_SECRET,
+  secret: env.AUTH_SECRET,
   debug: process.env.NODE_ENV === "development",
 });
 
