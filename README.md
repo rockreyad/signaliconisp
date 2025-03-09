@@ -12,6 +12,32 @@ A modern internet service provider billing system built with Next.js, Express, a
 - 🌙 Dark Mode Support
 - 🔄 Real-time Subscription Status
 - 📊 Admin Dashboard
+- 👥 Recharge Agent Portal
+
+## Role-Based Access
+
+### Customer
+
+- View and manage personal subscription
+- Make payments
+- View transaction history
+- Update profile information
+
+### Admin
+
+- Manage all users and subscriptions
+- View system-wide analytics
+- Configure packages and pricing
+- Monitor agent activities
+
+### Recharge Agent
+
+- Process customer recharges
+- View personal transaction history
+- Access agent-specific analytics dashboard
+- Track commission earnings
+- Generate recharge reports
+- Real-time balance management
 
 ## Tech Stack
 
@@ -49,11 +75,12 @@ A modern internet service provider billing system built with Next.js, Express, a
 
 ## Getting Started
 
-# Create .env files in apps/web and apps/api
+### Create .env files in apps/web , apps/api & packages/database
 
 ```bash
 cp apps/web/.env.example apps/web/.env.local
 cp apps/api/.env.example apps/api/.env
+cp packages/database/.env.example packages/database/.env
 ```
 
 Set up the database:
@@ -64,7 +91,7 @@ pnpm db:generate # Generate Prisma Client
 pnpm db:seed # Seed the database
 ```
 
-# Run the development server
+### Run the development server
 
 ```bash
 pnpm dev
