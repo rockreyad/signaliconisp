@@ -3,12 +3,12 @@ name: Backend Deployment
 on:
   push:
     branches: ["main"]
-    # paths:
-    #   - "apps/api/**"
-    #   - "packages/database/**"
-    #   - "packages/validation/**"
-    #   - "package.json"
-    #   - "package-lock.json"
+    paths:
+      - "apps/api/**"
+      - "packages/database/**"
+      - "packages/validation/**"
+      - "package.json"
+      - "package-lock.json"
 
 jobs:
   build:
