@@ -1,5 +1,6 @@
 import type { NextAuthConfig, Session } from "next-auth";
 import type { JWT } from "next-auth/jwt";
+import { protectedRoutes } from ".";
 
 export const authConfig: NextAuthConfig = {
   pages: {
@@ -13,11 +14,24 @@ export const authConfig: NextAuthConfig = {
       const isOnSignIn = nextUrl.pathname.startsWith("/sign-in");
 
       if (isOnDashboard) {
-        if (isLoggedIn) return true;
+        if (isLoggedIn) {
+          // Check role-based access
+          const userRole = auth?.user?.role as keyof typeof protectedRoutes;
+          const allowedRoutesForRole = protectedRoutes[userRole] || [];
+
+          // If the user's role doesn't have access to this route
+          if (!allowedRoutesForRole.includes(nextUrl.pathname)) {
+            // Redirect to dashboard or show 403 page
+            return Response.redirect(new URL("/dashboard", nextUrl));
+          }
+
+          return true;
+        }
         return Response.redirect(new URL("/sign-in", nextUrl));
       } else if (isLoggedIn && isOnSignIn) {
         return Response.redirect(new URL("/dashboard", nextUrl));
       }
+
       return true;
     },
     async jwt({ token, user }) {
