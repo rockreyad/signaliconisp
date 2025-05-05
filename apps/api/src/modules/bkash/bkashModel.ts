@@ -62,6 +62,8 @@ const BkashExecutePaymentResponse = z.object({
 
 const BkashResponseCode = {
   "2062": "The payment has already been completed",
+  "2056": "The payment has been cancelled",
+  "2117": "The payment has been declined",
 };
 
 export {
